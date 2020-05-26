@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { colors } from "./utils/colors";
-import { typeScale } from "./utils/typography";
+import { colors } from "../utils/colors";
+import { typeScale } from "../utils/typography";
 
 const Button = styled.button`
   border: none;
@@ -41,7 +41,8 @@ export const SecondaryButton = styled(Button)`
   border: 2px solid ${colors.primary["400"]};
 
   &:hover {
-    background-color: ${colors.primary["300"]};
+    color: ${colors.text.inverted};
+    background-color: ${colors.primary["400"]};
   }
   &:active {
     outline: 2px solid ${colors.primary["100"]};
