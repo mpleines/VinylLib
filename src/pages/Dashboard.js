@@ -17,7 +17,6 @@ export const Dashboard = () => {
         new Record.
       </Paragraph>
       <PrimaryButton>Add Record</PrimaryButton>
-      <div></div>
     </div>
   );
 };
