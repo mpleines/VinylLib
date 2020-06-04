@@ -6,7 +6,7 @@ import { PrimaryButton } from "../components/Buttons";
 export const Dashboard = () => {
   const styles = {
     dashboard: {
-      padding: "1.5rem",
+      padding: "2rem",
     },
   };
   return (
