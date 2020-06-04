@@ -1,8 +1,9 @@
 import React from "react";
 import { PrimaryButton, SecondaryButton } from "./components/Buttons";
-import { TextInput } from "./components/InputFields";
+import { TextInput, Label } from "./components/InputFields";
 import { Card } from "./components/Card";
 import { Divider } from "./components/Divider";
+import { FormGroup } from "./components/FormGroup";
 
 function App() {
   return (
@@ -12,8 +13,14 @@ function App() {
       <PrimaryButton>Sign Up</PrimaryButton>
       <h3>Secondary Button</h3>
       <SecondaryButton>Log In</SecondaryButton>
+      <h1>Labels</h1>
+      <Label>Username</Label>
       <h1>Inputs</h1>
       <TextInput></TextInput>
+      <h1>Form Groups</h1>
+      <FormGroup label="Password">
+        <TextInput></TextInput>
+      </FormGroup>
       <h1>Cards</h1>
       <Card>
         <h1>Hello this is Card</h1>
