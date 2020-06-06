@@ -10,8 +10,8 @@ const FormGroupWrapper = styled.div`
 export const FormGroup = ({ label, children }) => {
   return (
     <FormGroupWrapper>
-      {label}
-      <Label>{children}</Label>
+      <Label>{label}</Label>
+      {children}
     </FormGroupWrapper>
   );
 };
