@@ -7,7 +7,7 @@ import { ReactComponent as HappyBird } from "../icons/happy-bird.svg";
 export const Dashboard = () => {
   const styles = {
     dashboard: {
-      padding: "3rem",
+      padding: "0 5rem",
     },
   };
   return (
