@@ -8,8 +8,10 @@ export const Label = styled.label`
 `;
 
 export const TextInput = styled.input`
+  box-sizing: border-box;
+  width: 100%;
   padding: 12px 12px;
-  border: none;
+  border: 2px solid ${colors.text.normal};
   border-radius: 2px;
   font-size: ${typeScale.paragraph};
   color: ${colors.text.normal};

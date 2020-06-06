@@ -3,24 +3,25 @@ import { Title, Paragraph } from "../components/Fonts";
 import { Divider } from "../components/Divider";
 import { PrimaryButton } from "../components/Buttons";
 import { ReactComponent as HappyBird } from "../icons/happy-bird.svg";
+import { Page } from "../components/Page";
+import { useHistory } from "react-router-dom";
 
 export const Dashboard = () => {
-  const styles = {
-    dashboard: {
-      padding: "3rem",
-    },
-  };
+  const history = useHistory();
+
   return (
-    <div style={styles.dashboard}>
+    <Page>
       <Title>Welcome back, Lora!</Title>
       <Paragraph>
         You currently don´t have any Records stored. Click ‘Add Record’ to add a
         new Record.
       </Paragraph>
-      <PrimaryButton>Add Record</PrimaryButton>
+      <PrimaryButton onClick={() => history.push("/add-record")}>
+        Add Record
+      </PrimaryButton>
       <Divider justifyContent="flex-end">
         <HappyBird />
       </Divider>
-    </div>
+    </Page>
   );
 };

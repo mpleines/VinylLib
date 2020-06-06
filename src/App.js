@@ -1,12 +1,15 @@
 import React from "react";
 import { Navigation } from "./components/Navigation";
-import { Dashboard } from "./pages/Dashboard";
+import { BrowserRouter as Router } from "react-router-dom";
+import Main from "./Main";
 
 function App() {
   return (
     <div className="App">
-      <Navigation />
-      <Dashboard />
+      <Router>
+        <Navigation />
+        <Main />
+      </Router>
     </div>
   );
 }
