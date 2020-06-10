@@ -1,11 +1,11 @@
 import React from "react";
 import { Page } from "../components/Page";
-import { Title } from "../components/Fonts";
+import { Heading } from "../components/Fonts";
 
 const RecordList = () => {
   return (
     <Page>
-      <Title>All Records</Title>
+      <Heading>All Records</Heading>
     </Page>
   );
 };
