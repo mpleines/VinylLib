@@ -6,11 +6,13 @@ import { TextInput } from "../components/InputFields";
 import { FormGroup } from "../components/FormGroup";
 import { PrimaryButton } from "../components/Buttons";
 import { Form } from "../components/Form";
+import { Select } from "../components/Select";
 
 export const AddRecord = () => {
-  const addRecord = () => {
-    console.log("Added Record");
-  };
+  const fakeOptions = ["Rock", "Metal", "House", "Alternative", "Hip Hop"];
+
+  const addRecord = () => {};
+
   return (
     <Page>
       <Heading>Add a new Record</Heading>
@@ -23,7 +25,8 @@ export const AddRecord = () => {
         onSubmit={addRecord}
       >
         <H5>
-          Add a new Record and click 'Add Record' to save it to your collection.
+          Add all the information for your new Record and click 'Add Record' to
+          save it.
         </H5>
         <FormGroup label="Artist">
           <TextInput />
@@ -35,7 +38,7 @@ export const AddRecord = () => {
           <TextInput />
         </FormGroup>
         <FormGroup label="Genre">
-          <TextInput />
+          <Select options={fakeOptions} />
         </FormGroup>
         <Divider></Divider>
       </Form>
