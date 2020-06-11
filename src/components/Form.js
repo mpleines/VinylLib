@@ -13,10 +13,9 @@ const StyledForm = styled.form`
   padding: 1rem;
 `;
 
-export const Form = ({ children, actions, onSubmit }) => {
+export const Form = ({ children, actions }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit();
   };
 
   return (
