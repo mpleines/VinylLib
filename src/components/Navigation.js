@@ -31,7 +31,9 @@ export const Navigation = () => {
           <PrimaryButton onClick={() => history.push("/add-record")}>
             Add Record
           </PrimaryButton>
-          <UserIcon />
+          <Link to="/settings">
+            <UserIcon />
+          </Link>
         </Divider>
       </Divider>
     </div>
