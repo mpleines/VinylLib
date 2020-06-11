@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../utils/colors";
 import { typeScale } from "../utils/typography";
@@ -24,9 +24,9 @@ const StyledOption = styled.option`
   border: 2px solid ${colors.text.normal};
 `;
 
-export const Select = ({ options }) => {
+export const Select = ({ name, options, value, onChange }) => {
   return (
-    <StyledSelect>
+    <StyledSelect name={name} value={value} onChange={onChange}>
       {options.map((option) => (
         <StyledOption value={option}>{option}</StyledOption>
       ))}
