@@ -3,6 +3,7 @@ import { colors } from "../utils/colors";
 import { typeScale } from "../utils/typography";
 
 export const Label = styled.label`
+  margin: .5rem 0 .3rem 0;
   color: ${colors.text.normal};
   font-size: ${typeScale.paragraph};
 `;

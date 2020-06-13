@@ -1,10 +1,10 @@
 export const typeScale = {
-  header1: "4.209rem",
-  header2: "3.157rem",
-  header3: "2.369rem",
-  header4: "1.777rem",
-  header5: "1.333rem",
+  header1: "2.488rem",
+  header2: "2.074rem",
+  header3: "1.728rem",
+  header4: "1.44rem",
+  header5: "1.2rem",
   paragraph: "1rem",
-  helper: "0.75rem",
-  copyright: "0.563rem",
+  helper: "0.833rem",
+  copyright: "0.694rem",
 };
