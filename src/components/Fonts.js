@@ -16,7 +16,7 @@ export const H4 = styled.h4`
 
 export const H5 = styled.h5`
   display: inline-block;
-  margin: .5rem 0 2rem 0;
+  margin: .2rem 0 .7rem 0;
   font-size: ${typeScale.header5};
 `;
 
