@@ -45,10 +45,10 @@ export const AddRecord = () => {
           </PrimaryButton>,
         ]}
       >
-        <H5>
+        <Paragraph>
           Add all the information for your new Record and click 'Add Record' to
           save it.
-        </H5>
+        </Paragraph>
         <FormGroup label="Artist">
           <TextInput name="artist" onChange={handleInputChange} />
         </FormGroup>
