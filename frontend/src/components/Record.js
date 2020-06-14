@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { H5, Paragraph } from './Fonts';
-import zappa from './zappa.jpg'
 
 const RecordWrapper = styled.div`
   padding: .5rem;
@@ -39,7 +38,7 @@ const RecordInfo = styled.div`
 const Record = ({title, description}) => {
   return (
     <RecordWrapper>
-      <RecordArt image={zappa} />
+      <RecordArt image={""} />
       <RecordInfo>
         <H5>{title}</H5>
         <Paragraph>{description}</Paragraph>
