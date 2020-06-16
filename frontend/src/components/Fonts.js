@@ -23,3 +23,8 @@ export const H5 = styled.h5`
 export const Paragraph = styled.p`
   font-size: ${typeScale.paragraph};
 `;
+
+export const Helper = styled.p`
+  margin: 0;
+  font-size: ${typeScale.helper};
+`

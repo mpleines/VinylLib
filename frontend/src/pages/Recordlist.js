@@ -12,15 +12,15 @@ const RecordList = () => {
     getRecords()
       .then(records => setRecords(records))
       .then(() => setShowLoading(false));
-  }, [records]);
+  }, []);
   
   return (
     <Page>
       <Heading>All Records</Heading>
       {showLoading && <span>Loading...</span>}
       {!showLoading && records.map(record => 
-        <Record title={record.album} description={record.artist} 
-      />)}
+        <Record record={record}/>
+      )}
     </Page>
   );
 };
