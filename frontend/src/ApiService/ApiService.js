@@ -11,3 +11,12 @@ export const getRecords = async () => {
   const data = await response.json();
   return data;
 }
+
+export const postRecord = async (record) => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/records'}`, {
+    method: 'POST',
+    body: JSON.stringify(record),
+    ...options
+  });
+  console.log(response);
+}

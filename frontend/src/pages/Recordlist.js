@@ -11,14 +11,16 @@ const RecordList = () => {
   useEffect(() => {
     getRecords()
       .then(records => setRecords(records))
-      .then(records => setShowLoading(false));
-  }, []);
+      .then(() => setShowLoading(false));
+  }, [records]);
   
   return (
     <Page>
       <Heading>All Records</Heading>
       {showLoading && <span>Loading...</span>}
-      {!showLoading && records.map(record => <Record title={record.album} description={record.artist} />)}
+      {!showLoading && records.map(record => 
+        <Record title={record.album} description={record.artist} 
+      />)}
     </Page>
   );
 };
