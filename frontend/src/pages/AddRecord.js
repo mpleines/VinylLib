@@ -8,6 +8,7 @@ import { PrimaryButton } from "../components/Buttons";
 import { Form } from "../components/Form";
 import { Select } from "../components/Select";
 import { getYears } from "../utils/helpers";
+import { postRecord } from '../ApiService/ApiService';
 
 export const AddRecord = () => {
   const fakeOptions = ["Rock", "Metal", "House", "Alternative", "Hip Hop"];
@@ -27,7 +28,7 @@ export const AddRecord = () => {
   };
 
   const addRecord = () => {
-    setRecord({ ...record, id: Math.random() });
+    postRecord(record);
   };
 
   return (
