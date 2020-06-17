@@ -47,7 +47,7 @@ const RecordInfoText = styled(Paragraph)`
 const RecordBadge = styled.div`
   display: inline-block;
   background: #C0C0C0;
-  margin: .3rem 0;
+  margin: .3rem .3rem 0 0;
   padding: .3rem;
   border-radius: 9px;
 `;
@@ -66,7 +66,11 @@ const Record = ({record}) => {
             <Helper>{genre}</Helper>
           </RecordBadge>
         }
-        
+        {genre && 
+          <RecordBadge>
+            <Helper>{storageLocation}</Helper>
+          </RecordBadge>
+        }
       </RecordInfo>
     </RecordWrapper>
   )
