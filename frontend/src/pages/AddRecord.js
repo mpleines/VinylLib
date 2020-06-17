@@ -14,16 +14,12 @@ export const AddRecord = () => {
   const fakeOptions = ["Rock", "Metal", "House", "Alternative", "Hip Hop"];
   const years = getYears();
 
-  const [record, setRecord] = useState({
-    artist: "",
-    album: "",
-    releaseYear: "",
-    genre: "",
-  });
+  const [record, setRecord] = useState({});
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
+    console.log(value)
     setRecord({ ...record, [name]: value });
   };
 
@@ -58,9 +54,9 @@ export const AddRecord = () => {
         </FormGroup>
         <FormGroup label="Year of Release">
           <Select
-            name={"releaseYear"}
+            name="yearOfRelease"
             options={years}
-            value={record.releaseYear}
+            value={record.yearOfRelease}
             onChange={handleInputChange}
           />
         </FormGroup>
