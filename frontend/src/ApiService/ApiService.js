@@ -1,7 +1,13 @@
+export const getJwtOfUser= () => {
+  const jwt = localStorage.getItem('token');
+  return jwt;
+}
+
 const options = {
   headers : { 
     'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    'Accept': 'application/json',
+    'Authorization': getJwtOfUser()
   }
 }
 
