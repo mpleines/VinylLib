@@ -17,7 +17,7 @@ const RecordDetails = (props) => {
     <Page>
       <Heading>{record.album}</Heading>
       <Table data={[
-        {label: 'Album',value: record.album},
+        {label: 'Artist',value: record.artist},
         {label: 'Year of Release', value: record.yearOfRelease},
         {label: 'Genre', value: record.genre},
         {label: 'Stored at', value: record.storageLocation}
