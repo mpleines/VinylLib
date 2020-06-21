@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 require('dotenv/config')
 
 // init app
@@ -8,7 +9,6 @@ const app = express();
 
 // cors
 app.use(cors())
-
 
 // parse body of requests
 app.use(express.urlencoded({ extended: true }))
@@ -23,6 +23,21 @@ app.get('/', async (req, res) => {
   res.send(`
     <span>Api for VinylLib</span>
   `)
+})
+
+// login route to get jwt
+app.post('/login', (req, res) => {
+  // TODO: replace with real users from db
+  // MOCK USER
+  const user = {
+    id: 1,
+    username: 'Maik',
+    email: 'maik'
+  }
+
+  jwt.sign({user}, 'secretkey', (err, token) => {
+    res.json({token});
+  });
 })
 
 mongoose
