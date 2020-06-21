@@ -19,7 +19,6 @@ export const AddRecord = () => {
   const handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-    console.log(value)
     setRecord({ ...record, [name]: value });
   };
 

@@ -31,6 +31,5 @@ export const deleteRecord = async (recordId) => {
     method: 'DELETE',
     ...options
   });
-  console.log(response)
   return response;
 }
