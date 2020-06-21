@@ -10,6 +10,10 @@ export const Heading = styled.h2`
   font-size: ${typeScale.header2};
 `;
 
+export const H3 = styled.h3`
+  font-size: ${typeScale.header3}; 
+`;
+
 export const H4 = styled.h4`
   font-size: ${typeScale.header4};
 `;
