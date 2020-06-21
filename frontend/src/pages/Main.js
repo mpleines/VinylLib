@@ -4,6 +4,7 @@ import { Dashboard } from "./Dashboard";
 import RecordList from "./Recordlist";
 import AddRecord from "./AddRecord";
 import Settings from "./Settings";
+import RecordDetails from "./RecordDetails";
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
       <Route path="/all-records">
         <RecordList />
       </Route>
+      <Route path="/record-details" component={RecordDetails} />
       <Route path="/add-record">
         <AddRecord />
       </Route>

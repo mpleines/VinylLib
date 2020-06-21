@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { H5, Paragraph, Helper } from './Fonts';
 import DefaultCover from '../assets/default-cover.png';
+import { Link } from '../components/Link';
 
 const RecordWrapper = styled.div`
   padding: .5rem;
@@ -53,13 +54,14 @@ const RecordBadge = styled.div`
 `;
 
 const Record = ({record}) => {
-  console.log(record)
   const { album, artist, genre, storageLocation, image, yearOfRelease} = record;
   return (
     <RecordWrapper>
       <RecordArt image={image ? image : DefaultCover} />
       <RecordInfo>
-        <H5>{album}</H5>
+        <Link to={{ pathname: '/record-details', state: {record} }}>
+          <H5>{album}</H5>
+        </Link>
         <RecordInfoText>{artist} {yearOfRelease && `(${yearOfRelease})`}</RecordInfoText>
         {genre && 
           <RecordBadge>

@@ -34,6 +34,14 @@ export const PrimaryButton = styled(Button)`
   }
 `;
 
+export const ErrorButton = styled(PrimaryButton)`
+  background-color: #ff6961;
+
+  &:hover {
+    background-color: #ff362b;
+  }
+`
+
 export const SecondaryButton = styled(Button)`
   color: ${colors.primary["400"]};
   background-color: ${colors.text.inverted};
