@@ -12,7 +12,6 @@ const Actions = styled.div`
 
 const RecordDetails = (props) => {
   const {record} = props.location.state;
-  console.log(record)
 
   const handleDelete = () => {
     deleteRecord(record._id);
