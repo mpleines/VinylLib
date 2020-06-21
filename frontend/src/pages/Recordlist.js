@@ -18,6 +18,7 @@ const RecordList = () => {
     <Page>
       <Heading>All Records</Heading>
       {showLoading && <span>Loading...</span>}
+      {(!showLoading && records.length === 0) && <span>You currently don´t have any records stored</span>}
       {!showLoading && records.map(record => 
         <Record record={record}/>
       )}
