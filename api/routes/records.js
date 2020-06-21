@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/Record')
+const { remove } = require('../models/Record')
 
 // get back all posts
 router.get('/', async (req, res) => {
@@ -40,17 +41,17 @@ router.post('/', async (req, res) => {
   }
 })
 
-// // delete a post
-// router.delete('/:postId', async (req, res) => {
-//   try {
-//     const removedPost = await Post.remove({
-//       _id: req.params.postId
-//     })
-//     res.json(removedPost)
-//   } catch (err) {
-//     res.json(err)
-//   }
-// })
+// delete a record
+router.delete('/:recordId', async (req, res) => {
+  try {
+    const removedRecord = await Record.remove({
+      _id: req.params.recordId
+    })  
+    res.json(removedRecord)
+  } catch (err) {
+    res.json(err)
+  }
+})
 
 // // update a post
 // router.patch('/:postId', async (req, res) => {
