@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Page } from '../components/Page';
-import { Heading, H5 } from '../components/Fonts';
-import { Label } from '../components/InputFields';
-import {Table, TableData, TableDataContent} from '../components/Table';
+import { Heading } from '../components/Fonts';
+import {Table } from '../components/Table';
 import { ErrorButton } from '../components/Buttons';
+import { deleteRecord } from '../ApiService/ApiService';
 
 const Actions = styled.div`
   margin-top: 2rem;
@@ -12,6 +12,11 @@ const Actions = styled.div`
 
 const RecordDetails = (props) => {
   const {record} = props.location.state;
+  console.log(record)
+
+  const handleDelete = () => {
+    deleteRecord(record._id);
+  }
 
   return (
     <Page>
@@ -23,7 +28,7 @@ const RecordDetails = (props) => {
         {label: 'Stored at', value: record.storageLocation}
       ]}/>
       <Actions>
-        <ErrorButton>Delete Record</ErrorButton>
+        <ErrorButton onClick={handleDelete}>Delete Record</ErrorButton>
       </Actions>
     </Page>
   )

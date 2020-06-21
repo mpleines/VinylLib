@@ -18,5 +18,13 @@ export const postRecord = async (record) => {
     body: JSON.stringify(record),
     ...options
   });
-  console.log(response);
+}
+
+export const deleteRecord = async (recordId) => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/records'}/${recordId}`, {
+    method: 'DELETE',
+    ...options
+  });
+  console.log(response)
+  return response;
 }
