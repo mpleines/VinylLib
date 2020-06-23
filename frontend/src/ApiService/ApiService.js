@@ -7,8 +7,18 @@ const options = {
   headers : { 
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': getJwtOfUser()
+    'Authorization': `Bearer ${getJwtOfUser()}`
   }
+}
+
+// login the user
+export const login = async () => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/login'}`, {
+    method: 'POST',
+    ...options
+  });
+  const { token } = await response.json();
+  return token;
 }
 
 // common API requests go here
@@ -24,6 +34,7 @@ export const postRecord = async (record) => {
     body: JSON.stringify(record),
     ...options
   });
+  return response;
 }
 
 export const deleteRecord = async (recordId) => {
