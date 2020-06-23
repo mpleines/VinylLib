@@ -8,37 +8,36 @@ require('dotenv/config')
 const app = express();
 
 // cors
-app.use(cors())
+app.use(cors());
 
 // parse body of requests
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // import all available routes
-const recordRoutes = require('./routes/records.js')
+const recordRoutes = require('./routes/records.js');
+const User = require('./models/User.js');
 
-app.use('/records', recordRoutes)
+app.use('/records', recordRoutes);
 
 app.get('/', async (req, res) => {
   res.send(`
     <span>Api for VinylLib</span>
   `)
-})
+});
 
 // login route to get jwt
-app.post('/login', (req, res) => {
-  // TODO: replace with real users from db
-  // MOCK USER
-  const user = {
-    id: 1,
-    username: 'Maik',
-    email: 'maik'
+app.post('/login', async (req, res) => {
+  // Search for User by username and password
+  const user = await User.findOne({'username': req.body.username, 'password': req.body.password});
+  if(!user) {
+    res.send(404);
+  } else {
+    jwt.sign({user}, 'secretkey', (err, token) => {
+      res.json({token});
+    });
   }
-
-  jwt.sign({user}, 'secretkey', (err, token) => {
-    res.json({token});
-  });
-})
+});
 
 mongoose
   .connect(process.env.DB_CONNECTION, {
@@ -51,8 +50,8 @@ mongoose
   })
   .catch(err => {
     console.log(Error, err.message)
-  })
+  });
 
-const port = process.env.PORT || 8080
-app.listen(port)
-console.log(`REST API running on: port ${port}`)
+const port = process.env.PORT || 8080;
+app.listen(port);
+console.log(`REST API running on: port ${port}`);

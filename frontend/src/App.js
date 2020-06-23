@@ -8,7 +8,7 @@ import usePersistentState from "./hooks/usePersistentState";
 
 function App() {
   const [user, setUser] = usePersistentState({}, {
-    userName: '',
+    username: '',
     password: '',
     loggedIn: false
   });

@@ -9,15 +9,14 @@ import { PrimaryButton } from '../components/Buttons';
 import { login } from '../ApiService/ApiService';
 import UserContext from '../contexts/UserContext';
 
-
 const Login = () => {
   const {user, setUser} = useContext(UserContext);
 
   const handleLogin = async () => {
     // TODO: check if user exists
 
-    //if user exists, save the token in localstorage
-    const token = await login();
+    //if user exists, save the to‚ken in localstorage
+    const token = await login(user);
     localStorage.setItem('token', token);
 
     // update the user in context
@@ -31,10 +30,10 @@ const Login = () => {
         <PrimaryButton onClick={handleLogin}>Login</PrimaryButton>
       ]}>
         <FormGroup label="Username">
-          <TextInput></TextInput>
+          <TextInput value={user.username} onChange={(e) => setUser({...user, username: e.target.value})}/>
         </FormGroup>
         <FormGroup label="Password">
-          <TextInput type="password"></TextInput>
+          <TextInput type="password" value={user.password} onChange={(e) => setUser({...user, password: e.target.value})}/>
         </FormGroup>
       </Form>
     </Page>

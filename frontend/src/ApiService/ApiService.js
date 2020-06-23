@@ -12,11 +12,13 @@ const options = {
 }
 
 // login the user
-export const login = async () => {
+export const login = async (user) => {
   const response = await fetch(`${process.env.REACT_APP_API_URL}${'/login'}`, {
     method: 'POST',
-    ...options
+    ...options,
+    body: JSON.stringify(user)
   });
+
   const { token } = await response.json();
   return token;
 }
