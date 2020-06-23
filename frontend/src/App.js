@@ -7,7 +7,6 @@ import UserContext from './contexts/UserContext';
 import usePersistentState from "./hooks/usePersistentState";
 
 function App() {
-  // TODO: replace with context
   const [user, setUser] = usePersistentState({}, {
     userName: '',
     password: '',
