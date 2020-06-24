@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
 require('dotenv/config')
 
 // init app
@@ -29,13 +30,34 @@ app.get('/', async (req, res) => {
 // login route to get jwt
 app.post('/login', async (req, res) => {
   // Search for User by username and password
-  const user = await User.findOne({'username': req.body.username, 'password': req.body.password});
+  const user = await User.findOne({'username': req.body.username});
+  // check if user exists
   if(!user) {
-    res.send(404);
+    res.status(400).send({message: 'The User does not exist'});
+  }
+  // compare the passwords
+  if(!bcrypt.compareSync(req.body.password, user.password)) {
+    return res.status(400).send({ message: "Invalid Password" });
   } else {
+    // user exists with password, we can safely respond with a token
     jwt.sign({user}, 'secretkey', (err, token) => {
       res.json({token});
     });
+  }
+
+
+});
+
+app.post('/register', async (req, res) => {
+  try {
+    // hash the password
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    // create and save user
+    const user = new User(req.body);
+    const result = user.save();
+    res.send(result);
+  } catch(err) {
+    res.status(500).send(err);
   }
 });
 

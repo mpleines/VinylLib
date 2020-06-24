@@ -19,6 +19,10 @@ export const login = async (user) => {
     body: JSON.stringify(user)
   });
 
+  if(response.status !== 200) {
+    throw new Error('Login failed');
+  }
+
   const { token } = await response.json();
   return token;
 }
