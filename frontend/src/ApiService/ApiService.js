@@ -7,8 +7,26 @@ const options = {
   headers : { 
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': getJwtOfUser()
+    'Authorization': `Bearer ${getJwtOfUser()}`
   }
+}
+
+// login the user
+export const login = async (user) => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/login'}`, {
+    method: 'POST',
+    ...options,
+    body: JSON.stringify(user)
+  });
+
+  if(response.status !== 200) {
+    const res = await response.json();
+    const errorMessage = res.message;
+    throw new Error(errorMessage);
+  }
+
+  const { token } = await response.json();
+  return token;
 }
 
 // common API requests go here
@@ -24,6 +42,7 @@ export const postRecord = async (record) => {
     body: JSON.stringify(record),
     ...options
   });
+  return response;
 }
 
 export const deleteRecord = async (recordId) => {
@@ -31,6 +50,5 @@ export const deleteRecord = async (recordId) => {
     method: 'DELETE',
     ...options
   });
-  console.log(response)
   return response;
 }

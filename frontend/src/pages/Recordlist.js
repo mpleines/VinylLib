@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Page } from "../components/Page";
 import { Heading } from "../components/Fonts";
 import Record from '../components/Record';
@@ -10,9 +10,10 @@ const RecordList = () => {
 
   useEffect(() => {
     getRecords()
-      .then(records => setRecords(records))
-      .then(() => setShowLoading(false));
-  }, []);
+      .then(records => {console.log(records); setRecords(records)})
+      .then(() => setShowLoading(false))
+      .catch(err => console.log(err));
+  }, [setRecords]);
   
   return (
     <Page>

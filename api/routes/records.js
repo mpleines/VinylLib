@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 router.get('/', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async (err, authData) => {
     if(err) {
-      req.json(403);
+      res.json(403);
     } else {
       try {
         const records = await Record.find()
@@ -24,7 +24,7 @@ router.get('/', verifyToken, async (req, res) => {
 router.get('/:recordId', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async(err, authData) => {
     if(err){
-      req.json(403);
+      res.json(403);
     } else {
       try {
         const record = await Record.findById(req.params.recordId)
@@ -39,7 +39,7 @@ router.get('/:recordId', verifyToken, async (req, res) => {
 router.post('/', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async (err, authData) => {
     if(err) {
-      req.json(403);
+      res.json(403);
     } else {
       const { created, artist, album, yearOfRelease, genre, storageLocation } = req.body
       const record = await new Record({
@@ -64,7 +64,7 @@ router.post('/', verifyToken, async (req, res) => {
 router.delete('/:recordId', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async(err, authData) => {
     if(err){
-      req.json(403);
+      res.json(403);
     } else {
       try {
         const removedRecord = await Record.remove({
