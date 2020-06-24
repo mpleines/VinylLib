@@ -44,8 +44,6 @@ app.post('/login', async (req, res) => {
       res.json({token});
     });
   }
-
-
 });
 
 app.post('/register', async (req, res) => {
