@@ -11,7 +11,7 @@ const RecordList = () => {
 
   useEffect(() => {
     getRecords()
-      .then(records => {console.log(records); setRecords(records)})
+      .then(records => {setRecords(records)})
       .then(() => setShowLoading(false))
       .catch(err => console.log(err));
   }, [setRecords]);
