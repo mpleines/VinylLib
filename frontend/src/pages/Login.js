@@ -20,7 +20,7 @@ const Login = () => {
       localStorage.setItem('token', token);
   
       // update the user in context
-      setUser({ loggedIn: true });
+      setUser({ ...user, loggedIn: true });
     } catch(err) {
       setError(err.message);
     }
