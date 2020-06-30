@@ -13,5 +13,6 @@ export const colors = {
   text: {
     normal: "#181818",
     inverted: "#FFFFFF",
+    lightgrey: "#F5F5F5",
   },
 };
