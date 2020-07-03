@@ -9,8 +9,10 @@ import { Form } from "../components/Form";
 import { Select } from "../components/Select";
 import { getYears } from "../utils/helpers";
 import { postRecord } from '../ApiService/ApiService';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export const AddRecord = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const fakeOptions = ["Rock", "Metal", "House", "Alternative", "Hip Hop"];
   const years = getYears();
 
@@ -22,54 +24,63 @@ export const AddRecord = () => {
     setRecord({ ...record, [name]: value });
   };
 
-  const addRecord = () => {
-    postRecord(record);
+  const addRecord = async () => {
+    try {
+      setIsLoading(true);
+      await postRecord(record);
+      setRecord({});
+      setIsLoading(false);
+    } catch(err) {
+      console.log(err);
+    }
   };
 
   return (
     <Page>
       <Heading>Add a new Record</Heading>
-      <Form
-        actions={[
-          <PrimaryButton
-            type="submit"
-            margin="5rem 0 1rem 0"
-            justifyContent="flex-end"
-            onClick={addRecord}
-          >
-            Add Record
-          </PrimaryButton>,
-        ]}
-      >
-        <Paragraph>
-          Add all the information for your new Record and click 'Add Record' to
-          save it.
-        </Paragraph>
-        <FormGroup label="Artist">
-          <TextInput name="artist" onChange={handleInputChange} />
-        </FormGroup>
-        <FormGroup label="Album">
-          <TextInput name="album" onChange={handleInputChange} />
-        </FormGroup>
-        <FormGroup label="Year of Release">
-          <Select
-            name="yearOfRelease"
-            options={years}
-            value={record.yearOfRelease}
-            onChange={handleInputChange}
-          />
-        </FormGroup>
-        <FormGroup label="Genre">
-          <Select
-            name="genre"
-            options={fakeOptions}
-            onChange={handleInputChange}
-          />
-        </FormGroup>
-        <FormGroup label="Storage Location">
-          <TextInput name="storageLocation" onChange={handleInputChange} />
-        </FormGroup>
-      </Form>
+      {isLoading ? <LoadingSpinner/> : 
+        <Form
+          actions={[
+            <PrimaryButton
+              type="submit"
+              margin="5rem 0 1rem 0"
+              justifyContent="flex-end"
+              onClick={addRecord}
+            >
+              Add Record
+            </PrimaryButton>,
+          ]}
+        >
+          <Paragraph>
+            Add all the information for your new Record and click 'Add Record' to
+            save it.
+          </Paragraph>
+          <FormGroup label="Artist">
+            <TextInput name="artist" onChange={handleInputChange} />
+          </FormGroup>
+          <FormGroup label="Album">
+            <TextInput name="album" onChange={handleInputChange} />
+          </FormGroup>
+          <FormGroup label="Year of Release">
+            <Select
+              name="yearOfRelease"
+              options={years}
+              value={record.yearOfRelease}
+              onChange={handleInputChange}
+            />
+          </FormGroup>
+          <FormGroup label="Genre">
+            <Select
+              name="genre"
+              options={fakeOptions}
+              onChange={handleInputChange}
+            />
+          </FormGroup>
+          <FormGroup label="Storage Location">
+            <TextInput name="storageLocation" onChange={handleInputChange} />
+          </FormGroup>
+        </Form>
+      }
     </Page>
   );
 };
