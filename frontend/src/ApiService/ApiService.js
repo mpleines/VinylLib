@@ -29,6 +29,21 @@ export const login = async (user) => {
   return token;
 }
 
+// register new User
+export const register = async (newUser) => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/register'}`, {
+    method: 'POST',
+    ...options,
+    body: JSON.stringify(newUser)
+  });
+
+  if(response.status !== 200) {
+    const res = await response.json();
+    const errorMessage = res.message;
+    throw new Error(errorMessage);
+  }
+}
+
 // common API requests go here
 export const getRecords = async () => {
   const response = await fetch(`${process.env.REACT_APP_API_URL}${'/records'}`, options);

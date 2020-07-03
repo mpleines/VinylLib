@@ -8,6 +8,8 @@ import { TextInput } from '../components/InputFields';
 import { PrimaryButton } from '../components/Buttons';
 import { login } from '../ApiService/ApiService';
 import UserContext from '../contexts/UserContext';
+import { Link } from '../components/Link';
+import Margin from '../components/Margin';
 
 const Login = () => {
   const {user, setUser} = useContext(UserContext);
@@ -39,6 +41,8 @@ const Login = () => {
           <TextInput type="password" value={user.password} onChange={(e) => setUser({...user, password: e.target.value})}/>
         </FormGroup>
       </Form>
+      <Margin/>
+      <Link to="/register">Don´t have an Account? Register here</Link>
       {error && <div style={{color: 'red', marginTop: '16px'}}>{error}</div>}
     </Page>
   )
