@@ -7,6 +7,7 @@ import { ErrorButton } from '../components/Buttons';
 import { deleteRecord } from '../ApiService/ApiService';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useHistory } from "react-router-dom";
+import { toasty } from '../components/Toast';
 
 const Actions = styled.div`
   margin-top: 2rem;
@@ -20,6 +21,7 @@ const RecordDetails = (props) => {
   const handleDelete = async () => {
     setIsLoading(true);
     const res = await deleteRecord(record._id);
+    toasty(`Successfully deleted ${record.album} by ${record.artist}`, 3000);
     setIsLoading(false);
     // return to record list
     history.goBack();
