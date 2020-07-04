@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Page } from "../components/Page";
 import { Heading } from "../components/Fonts";
 import Record from '../components/Record';
-import { getRecords } from '../ApiService/ApiService';
+import { getRecords, emptyResponseHandler } from '../ApiService/ApiService';
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const RecordList = () => {
@@ -10,10 +10,16 @@ const RecordList = () => {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
-    getRecords()
-      .then(records => {setRecords(records)})
-      .then(() => setShowLoading(false))
-      .catch(err => console.log(err));
+    async function fetchRecords() {
+      try {
+        const records = await emptyResponseHandler(getRecords);
+        setRecords(records);
+        setShowLoading(false);
+      } catch(err) {
+        console.log(err);
+      }
+    }
+    fetchRecords();
   }, [setRecords]);
   
   return (

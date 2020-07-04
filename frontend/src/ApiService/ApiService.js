@@ -67,3 +67,12 @@ export const deleteRecord = async (recordId) => {
   });
   return response;
 }
+
+export const emptyResponseHandler = async (request) => {
+  const res = await request();
+  if(Array.isArray(res)) {
+    return res;
+  } else {
+    return [];
+  }
+}
