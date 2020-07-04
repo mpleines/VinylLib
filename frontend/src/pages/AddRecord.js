@@ -11,8 +11,12 @@ import { getYears } from "../utils/helpers";
 import { postRecord } from '../ApiService/ApiService';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { toasty } from '../components/Toast';
+import { required } from '../utils/validators';
+
+const initialErrors = {artistError: '', albumError: ''};
 
 export const AddRecord = () => {
+  const [errors, setErrors] = useState(initialErrors);
   const [isLoading, setIsLoading] = useState(false);
   const fakeOptions = ["Rock", "Metal", "House", "Alternative", "Hip Hop"];
   const years = getYears();
@@ -25,7 +29,23 @@ export const AddRecord = () => {
     setRecord({ ...record, [name]: value });
   };
 
+  const validate = () => {
+    const artistError = required(record.artist);
+    const albumError = required(record.album);
+    setErrors({...errors, artistError, albumError});
+
+    if(artistError || albumError) {
+      return false;
+    }
+    
+    return true;
+  }
+
   const addRecord = async () => {
+    const isValid = validate();
+    if(!isValid) {
+      return;
+    }
     try {
       setIsLoading(true);
       await postRecord(record);
@@ -57,10 +77,10 @@ export const AddRecord = () => {
             Add all the information for your new Record and click 'Add Record' to
             save it.
           </Paragraph>
-          <FormGroup label="Artist">
+          <FormGroup label="Artist" error={errors.artistError}>
             <TextInput name="artist" onChange={handleInputChange} />
           </FormGroup>
-          <FormGroup label="Album">
+          <FormGroup label="Album" error={errors.albumError}>
             <TextInput name="album" onChange={handleInputChange} />
           </FormGroup>
           <FormGroup label="Year of Release">

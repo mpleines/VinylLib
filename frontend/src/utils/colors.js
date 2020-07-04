@@ -15,4 +15,5 @@ export const colors = {
     inverted: "#FFFFFF",
     lightgrey: "#F5F5F5",
   },
+  error: "#ff0033",
 };

@@ -3,9 +3,12 @@ import { colors } from "../utils/colors";
 import { typeScale } from "../utils/typography";
 
 export const Label = styled.label`
+  width: 100%;
   margin: .5rem 0 .3rem 0;
   color: ${colors.text.normal};
   font-size: ${typeScale.paragraph};
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const TextInput = styled.input`
