@@ -64,7 +64,7 @@ export const AddRecord = () => {
         <Form
           actions={[
             <PrimaryButton
-              type="submit"
+              type="button"
               margin="5rem 0 1rem 0"
               justifyContent="flex-end"
               onClick={addRecord}
