@@ -10,6 +10,7 @@ import { Select } from "../components/Select";
 import { getYears } from "../utils/helpers";
 import { postRecord } from '../ApiService/ApiService';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { toasty } from '../components/Toast';
 
 export const AddRecord = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +29,9 @@ export const AddRecord = () => {
     try {
       setIsLoading(true);
       await postRecord(record);
+      toasty(`added ${record.album} by ${record.artist} to your collection`, 3000);
       setRecord({});
-      setIsLoading(false);
+      setIsLoading(false) ;
     } catch(err) {
       console.log(err);
     }
