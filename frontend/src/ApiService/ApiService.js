@@ -45,8 +45,12 @@ export const register = async (newUser) => {
 }
 
 // common API requests go here
-export const getRecords = async () => {
-  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/records'}`, options);
+export const getRecords = async (user) => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/records/all'}`, {
+    method: 'POST',
+    body: user,
+    ...options
+  });
   const data = await response.json();
   return data;
 }
@@ -68,8 +72,8 @@ export const deleteRecord = async (recordId) => {
   return response;
 }
 
-export const emptyResponseHandler = async (request) => {
-  const res = await request();
+export const emptyResponseHandler = async (request, body) => {
+  const res = await request(JSON.stringify(body));
   if(Array.isArray(res)) {
     return res;
   } else {

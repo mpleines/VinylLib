@@ -18,8 +18,7 @@ const Register = () => {
   });
 
   const handleRegister = async () => {
-    try {
-      
+    try {  
       await register(newUser);
     } catch(err) {
       console.log(err);
