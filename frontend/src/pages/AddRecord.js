@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Page } from "../components/Page";
 import { Heading, Paragraph, H5 } from "../components/Fonts";
 import { Divider } from "../components/Divider";
@@ -12,16 +12,22 @@ import { postRecord } from '../ApiService/ApiService';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { toasty } from '../components/Toast';
 import { required } from '../utils/validators';
+import UserContext from "../contexts/UserContext";
 
 const initialErrors = {artistError: '', albumError: ''};
 
 export const AddRecord = () => {
+  const {user} = useContext(UserContext);
   const [errors, setErrors] = useState(initialErrors);
   const [isLoading, setIsLoading] = useState(false);
   const fakeOptions = ["Rock", "Metal", "House", "Alternative", "Hip Hop"];
   const years = getYears();
 
-  const [record, setRecord] = useState({});
+  const defaultRecord = useRef({username: user.username});
+
+  const [record, setRecord] = useState({
+    username: defaultRecord.current.username
+  });
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -50,8 +56,8 @@ export const AddRecord = () => {
       setIsLoading(true);
       await postRecord(record);
       toasty(`added ${record.album} by ${record.artist} to your collection`, 3000);
-      setRecord({});
-      setIsLoading(false) ;
+      setRecord(defaultRecord.current);
+      setIsLoading(false);
     } catch(err) {
       console.log(err);
     }
