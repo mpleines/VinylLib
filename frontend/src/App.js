@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import UserContext from './contexts/UserContext';
 import usePersistentState from "./hooks/usePersistentState";
 import Register from "./pages/Register";
+import Landing from "./pages/Landing";
 
 function App() {
   const [user, setUser] = usePersistentState({}, {
@@ -21,6 +22,9 @@ function App() {
           {!user.loggedIn &&
             <BrowserRouter>
               <Route exact path="/">
+                <Landing/>
+              </Route>
+              <Route exact path="/login">
                 <Login />
               </Route>
               <Route path="/register">
