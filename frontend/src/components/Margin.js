@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  margin-top: 1em;
+  margin-top: ${props => props.margin ? props.margin : '1em'};
 `;

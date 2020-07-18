@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { typeScale } from "../utils/typography";
+import { colors } from '../utils/colors';
 
 export const Title = styled.h1`
+  color: ${props => props.white ? colors.text.inverted : colors.text.normal};
   font-size: ${typeScale.header1};
+  margin: ${props => props.noMargin ? 0 : null};
 `;
 
 export const Heading = styled.h2`
@@ -11,6 +14,7 @@ export const Heading = styled.h2`
 `;
 
 export const H3 = styled.h3`
+  color: ${props => props.white ? colors.text.inverted : colors.text.normal};
   font-size: ${typeScale.header3}; 
 `;
 
@@ -25,6 +29,7 @@ export const H5 = styled.h5`
 `;
 
 export const Paragraph = styled.p`
+  color: ${props => props.white ? colors.text.inverted : colors.text.normal};
   font-size: ${typeScale.paragraph};
 `;
 
