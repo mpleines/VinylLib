@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { Page } from '../components/Page';
-import { Heading } from '../components/Fonts';
+import { Heading, H3 } from '../components/Fonts';
 import { Form } from '../components/Form';
-import { PrimaryButton } from '../components/Buttons';
+import { PrimaryButton, SecondaryButton } from '../components/Buttons';
 import { FormGroup } from '../components/FormGroup';
 import { TextInput } from '../components/InputFields';
 import { Link } from '../components/Link';
 import Margin from '../components/Margin';
 import { register } from '../ApiService/ApiService';
+import Banner from '../components/Banner';
+import { useHistory } from 'react-router-dom';
+import { FullPage } from '../components/Page';
+import Center from '../components/Center';
 
 const Register = () => {
+  const history = useHistory();
 
   const [newUser, setNewUser] = useState({
     username: '',
@@ -18,35 +23,65 @@ const Register = () => {
   });
 
   const handleRegister = async () => {
-    try {  
+    try {
       await register(newUser);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
-  }
-  
-  return(
-    <Page>
-      <Heading>Create an Account</Heading>
+  };
 
-      <Form actions={[
-        <PrimaryButton onClick={handleRegister}>Create Account</PrimaryButton>
-      ]}>
-        <FormGroup label="Username">
-          <TextInput value={newUser.username} onChange={(e) => setNewUser({...newUser, username: e.target.value})}/>
-        </FormGroup>
-        <FormGroup label="Password">
-          <TextInput type="password" value={newUser.password} onChange={(e) => setNewUser({...newUser, password: e.target.value})}/>
-        </FormGroup>
-        <FormGroup label="Email">
-          <TextInput type="email" value={newUser.email} onChange={(e) => setNewUser({...newUser, email: e.target.value})}/> 
-        </FormGroup>
-      </Form>
-      <Margin/>
-      <Link to="/">Back to login</Link>
-    </Page>
-  )
-
-}
+  return (
+    <React.Fragment>
+      <Banner>
+        <H3>VinylLib </H3>
+        <SecondaryButton onClick={() => history.push('/login')}>
+          Login
+        </SecondaryButton>
+      </Banner>
+      <FullPage>
+        <Center>
+          <Margin margin={'3em'} />
+          <Heading>Create an Account</Heading>
+          <Form
+            actions={[
+              <PrimaryButton onClick={handleRegister}>
+                Create Account
+              </PrimaryButton>,
+            ]}
+          >
+            <FormGroup label="Username">
+              <TextInput
+                value={newUser.username}
+                onChange={(e) =>
+                  setNewUser({ ...newUser, username: e.target.value })
+                }
+              />
+            </FormGroup>
+            <FormGroup label="Password">
+              <TextInput
+                type="password"
+                value={newUser.password}
+                onChange={(e) =>
+                  setNewUser({ ...newUser, password: e.target.value })
+                }
+              />
+            </FormGroup>
+            <FormGroup label="Email">
+              <TextInput
+                type="email"
+                value={newUser.email}
+                onChange={(e) =>
+                  setNewUser({ ...newUser, email: e.target.value })
+                }
+              />
+            </FormGroup>
+          </Form>
+          <Margin />
+          <Link to="/">Go back</Link>
+        </Center>
+      </FullPage>
+    </React.Fragment>
+  );
+};
 
 export default Register;
