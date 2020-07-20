@@ -5,6 +5,7 @@ import Record from '../components/Record';
 import { getRecords, emptyResponseHandler } from '../ApiService/ApiService';
 import LoadingSpinner from '../components/LoadingSpinner';
 import UserContext from '../contexts/UserContext';
+import { Paragraph } from '../components/Fonts';
 
 const RecordList = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -29,7 +30,7 @@ const RecordList = () => {
       <Heading>All Records</Heading>
       {showLoading && <LoadingSpinner />}
       {!showLoading && records.length === 0 && (
-        <span>You currently don´t have any records stored</span>
+        <Paragraph>You currently don´t have any records stored</Paragraph>
       )}
       {!showLoading && records.map((record) => <Record record={record} />)}
     </Page>

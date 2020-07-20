@@ -17,7 +17,7 @@ export const PrimaryButton = styled(Button)`
   background-color: ${colors.primary['500']};
 
   &:hover {
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.4);
+    background-color: #ff476c;
   }
   &:active {
     outline: 2px solid ${colors.primary['100']};
@@ -43,10 +43,10 @@ export const ErrorButton = styled(PrimaryButton)`
 `;
 
 export const SecondaryButton = styled(Button)`
-  color: ${colors.primary['400']};
+  color: ${colors.text.normal};
   background-color: ${colors.text.inverted};
   padding: 10px 22px;
-  border: 2px solid ${colors.primary['400']};
+  border: 2px solid ${colors.text.normal};
 
   &:hover {
     color: ${colors.text.inverted};
@@ -67,15 +67,12 @@ export const SecondaryButton = styled(Button)`
   }
 `;
 
-export const BigButton = styled(Button)`
+export const BigButton = styled(PrimaryButton)`
   padding: 24px 48px;
   font-size: ${typeScale.header3};
 `;
 
 export const BigPrimaryButton = styled(BigButton)`
-  color: ${colors.text.inverted};
-  background-color: ${colors.primary['500']};
-
   &:hover {
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.4);
   }

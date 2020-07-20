@@ -1,16 +1,18 @@
-import React from "react";
-import { Divider } from "./Divider";
-import { PrimaryButton } from "./Buttons";
-import { ReactComponent as LpIcon } from "../icons/lp.svg";
-import { ReactComponent as UserIcon } from "../icons/user.svg";
-import { Link } from "./Link";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { Divider } from './Divider';
+import { PrimaryButton } from './Buttons';
+import { ReactComponent as LpIcon } from '../icons/lp.svg';
+import { ReactComponent as UserIcon } from '../icons/user.svg';
+import { Link } from './Link';
+import { useHistory } from 'react-router-dom';
+import { colors } from '../utils/colors';
 
 export const Navigation = () => {
   const history = useHistory();
   const styles = {
     navigation: {
-      padding: "1rem 2rem",
+      padding: '1rem 2rem',
+      background: colors.primary['100'],
     },
   };
 
@@ -28,7 +30,7 @@ export const Navigation = () => {
           flex="0 0 auto"
           margin="0 0 0 1rem"
         >
-          <PrimaryButton onClick={() => history.push("/add-record")}>
+          <PrimaryButton onClick={() => history.push('/add-record')}>
             Add Record
           </PrimaryButton>
           <Link to="/settings">

@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Page, FullPage } from '../components/Page';
 import { Heading, H3 } from '../components/Fonts';
-import { deleteRecord } from '../ApiService/ApiService';
 import { Form } from '../components/Form';
 import { FormGroup } from '../components/FormGroup';
 import { TextInput } from '../components/InputFields';
@@ -28,17 +26,17 @@ const Login = () => {
 
       // update the user in context
       setUser({ ...user, loggedIn: true });
+      history.push('/');
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <FullPage>
+    <>
       <Banner>
-        <H3>VinylLib </H3>
-        <SecondaryButton onClick={() => history.push('/login')}>
-          Login
+        <SecondaryButton onClick={() => history.push('/register')}>
+          Register
         </SecondaryButton>
       </Banner>
       <Center>
@@ -67,7 +65,7 @@ const Login = () => {
           <div style={{ color: 'red', marginTop: '16px' }}>{error}</div>
         )}
       </Center>
-    </FullPage>
+    </>
   );
 };
 

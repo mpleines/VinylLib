@@ -1,5 +1,5 @@
-import styled, {keyframes} from 'styled-components';
-import {colors} from '../utils/colors';
+import styled, { keyframes } from 'styled-components';
+import { colors } from '../utils/colors';
 
 const rotate = keyframes`
   from {
@@ -16,7 +16,7 @@ export default styled.div`
   height: 64px;
   border: 5px solid;
   border-color: ${colors.text.lightgrey};
-  border-top-color: ${colors.primary["400"]};
+  border-top-color: ${colors.primary['500']};
   border-radius: 50%;
   display: inline-block;
   animation: ${rotate} 1s linear infinite;

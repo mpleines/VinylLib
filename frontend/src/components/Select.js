@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { colors } from "../utils/colors";
-import { typeScale } from "../utils/typography";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { colors } from '../utils/colors';
+import { typeScale } from '../utils/typography';
 
 const StyledSelect = styled.select`
   box-sizing: border-box;
   width: 100%;
   padding: 12px 12px;
   border: 2px solid ${colors.text.normal};
-  border-radius: 2px;
+  border-radius: 5px;
   font-size: ${typeScale.paragraph};
   color: ${colors.text.normal};
 
   &:focus {
-    outline: 2px solid ${colors.primary["400"]};
+    border: 2px solid ${colors.primary['500']};
   }
 `;
 
@@ -24,11 +24,10 @@ const StyledOption = styled.option`
   border: 2px solid ${colors.text.normal};
 `;
 
-
 export const Select = ({ name, options, value, onChange }) => {
   return (
     <StyledSelect name={name} value={value} onChange={onChange}>
-      <StyledOption value={""} disabled selected>
+      <StyledOption value={''} disabled selected>
         Select one
       </StyledOption>
       {options.map((option) => (

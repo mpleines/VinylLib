@@ -19,8 +19,6 @@ const Landing = () => {
   return (
     <LandingPage>
       <Banner>
-        <LpIcon />
-        <H3>VinylLib </H3>
         <SecondaryButton onClick={() => history.push('/login')}>
           Login
         </SecondaryButton>
