@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { colors } from '../utils/colors';
 
 const FormActions = styled.div`
   margin: 1rem 0 0 0;
@@ -8,9 +9,11 @@ const FormActions = styled.div`
 `;
 
 const StyledForm = styled.form`
-  max-width: 700px;
+  border-radius: 5px;
+  background: ${colors.text.normal};
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
-  padding: 1rem;
+  padding: 1.5rem;
+  width: 450px;
 `;
 
 export const Form = ({ children, actions }) => {
