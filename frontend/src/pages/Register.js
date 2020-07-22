@@ -11,6 +11,7 @@ import { register } from '../ApiService/ApiService';
 import Banner from '../components/Banner';
 import { useHistory } from 'react-router-dom';
 import Center from '../components/Center';
+import { toasty } from '../components/Toast';
 
 const Register = () => {
   const history = useHistory();
@@ -24,6 +25,8 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       await register(newUser);
+      toasty('Account registered successfully - You may now login', 5000);
+      history.push('/login');
     } catch (err) {
       console.log(err);
     }
