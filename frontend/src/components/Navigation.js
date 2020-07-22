@@ -11,7 +11,7 @@ export const Navigation = () => {
   const history = useHistory();
   const styles = {
     navigation: {
-      padding: '1rem 2rem',
+      padding: '.5rem 2rem',
       background: colors.primary['100'],
     },
   };

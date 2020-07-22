@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../utils/colors';
-import { ReactComponent as LpIcon } from '../icons/lp.svg';
-import { H3 } from './Fonts';
+import Logo from './Logo';
 
 const Wrapper = styled.div`
   background: ${colors.text.normal};
@@ -15,8 +14,7 @@ const Wrapper = styled.div`
 const Banner = ({ children }) => {
   return (
     <Wrapper>
-      <LpIcon />
-      <H3>VinylLib </H3>
+      <Logo />
       {children}
     </Wrapper>
   );
