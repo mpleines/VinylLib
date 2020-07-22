@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../utils/colors';
 import Logo from './Logo';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   background: ${colors.text.normal};
@@ -14,7 +15,9 @@ const Wrapper = styled.div`
 const Banner = ({ children }) => {
   return (
     <Wrapper>
-      <Logo />
+      <Link to="/landing">
+        <Logo />
+      </Link>
       {children}
     </Wrapper>
   );
