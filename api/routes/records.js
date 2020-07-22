@@ -7,76 +7,66 @@ const jwt = require('jsonwebtoken');
 // get back all records
 router.post('/all', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async (err, authData) => {
-    if(err) {
+    if (err) {
       res.json(403);
-    } else { 
+    } else {
       try {
-        const records = await Record.find({username: req.body.username})
-        res.json(records)
+        const records = await Record.find({ username: req.body.username });
+        res.json(records);
       } catch (err) {
-        res.json({ message: err })
+        res.json({ message: err });
       }
     }
   });
-})
+});
 
 // get back specific record
 router.get('/:recordId', verifyToken, async (req, res) => {
-  jwt.verify(req.token, 'secretkey', async(err, authData) => {
-    if(err){
-      res.json(403);
+  jwt.verify(req.token, 'secretkey', async (err, authData) => {
+    if (err) {
+      res.send(403);
     } else {
       try {
-        const record = await Record.findById(req.params.recordId)
-        res.json(record)
+        const record = await Record.findById(req.params.recordId);
+        res.json(record);
       } catch (err) {
-        res.json({ message: err })
+        res.json({ message: err });
       }
     }
-  })
-})
+  });
+});
 
 router.post('/', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async (err, authData) => {
-    if(err) {
-      res.json(403);
+    if (err) {
+      res.sendStatus(403);
     } else {
-      const { created, artist, album, yearOfRelease, genre, storageLocation, username } = req.body
-      const record = await new Record({
-        created,
-        artist,
-        album,
-        yearOfRelease,
-        genre,
-        storageLocation,
-        username
-      })
       try {
-        const data = await record.save()
-        res.json(data)
+        const data = await new Record(req.body).save();
+        res.json(data);
       } catch (err) {
-        res.json({ message: err })
+        res.send(err);
       }
     }
-  })
-})
+  });
+});
 
 // delete a record
 router.delete('/:recordId', verifyToken, async (req, res) => {
-  jwt.verify(req.token, 'secretkey', async(err, authData) => {
-    if(err){
+  jwt.verify(req.token, 'secretkey', async (err, authData) => {
+    if (err) {
       res.json(403);
     } else {
       try {
         const removedRecord = await Record.remove({
-          _id: req.params.recordId
-        })  
-        res.json(removedRecord)
+          _id: req.params.recordId,
+        });
+        res.json(removedRecord);
       } catch (err) {
-        res.json(err)
+        res.json(err);
       }
     }
-  })
-})
+  });
+});
 
-module.exports = router
+module.exports = router;
