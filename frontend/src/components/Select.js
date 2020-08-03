@@ -30,9 +30,10 @@ export const Select = ({ name, options, value, onChange }) => {
       <StyledOption value={''} disabled selected>
         Select one
       </StyledOption>
-      {options.map((option) => (
-        <StyledOption value={option}>{option}</StyledOption>
-      ))}
+      {options &&
+        options.map((option) => (
+          <StyledOption value={option}>{option}</StyledOption>
+        ))}
     </StyledSelect>
   );
 };
