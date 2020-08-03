@@ -12,7 +12,7 @@ export const Title = styled.h1`
 export const Heading = styled.h2`
   color: ${(props) =>
     props.black ? colors.text.normal : colors.text.inverted};
-  margin: 0 0 2rem 0;
+  margin: ${(props) => (props.noMargin ? 0 : '0 0 2rem 0')};
   font-size: ${typeScale.header2};
 `;
 

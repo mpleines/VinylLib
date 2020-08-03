@@ -20,6 +20,25 @@ router.post('/all', verifyToken, async (req, res) => {
   });
 });
 
+// get back filtered records
+router.post('/filtered', verifyToken, async (req, res) => {
+  jwt.verify(req.token, 'secretkey', async (err, authData) => {
+    if (err) {
+      res.json(403);
+    } else {
+      try {
+        const records = await Record.find({
+          username: req.body.user.username,
+          album: { $regex: req.body.filter, $options: 'i' },
+        });
+        res.json(records);
+      } catch (err) {
+        res.json({ message: err });
+      }
+    }
+  });
+});
+
 // get back specific record
 router.get('/:recordId', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async (err, authData) => {
