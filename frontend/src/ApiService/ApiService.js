@@ -60,6 +60,25 @@ export const getRecords = async (user) => {
   return data;
 };
 
+export const getFilteredRecords = async (body) => {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}${'/records/filtered'}`,
+    {
+      method: 'POST',
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  const data = await response.json();
+  return data;
+};
+
 export const postRecord = async (record) => {
   const token = localStorage.getItem('token');
 

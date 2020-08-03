@@ -6,9 +6,9 @@ import { Link } from '../components/Link';
 import { colors } from '../utils/colors';
 
 const RecordWrapper = styled.div`
+  margin-bottom: 1em;
   background: ${colors.text.inverted};
   padding: 0.5rem;
-  margin: 1.5rem;
   display: flex;
   align-items: center;
   border-radius: 5px;
