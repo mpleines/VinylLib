@@ -27,12 +27,10 @@ router.post('/filtered', verifyToken, async (req, res) => {
       res.json(403);
     } else {
       try {
-        const filterValue = req.body.filter;
         const records = await Record.find({
           username: req.body.user.username,
-          album: { $regex: filterValue, $options: 'i' },
+          album: { $regex: req.body.filter, $options: 'i' },
         });
-        console.log(records);
         res.json(records);
       } catch (err) {
         res.json({ message: err });
