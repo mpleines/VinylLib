@@ -114,6 +114,22 @@ export const deleteRecord = async (recordId) => {
   return response;
 };
 
+export const getGenres = async () => {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/genres'}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+  return data;
+};
+
 export const emptyResponseHandler = async (request, body) => {
   const res = await request(JSON.stringify(body));
   if (Array.isArray(res)) {
