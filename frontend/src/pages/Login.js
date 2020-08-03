@@ -25,7 +25,7 @@ const Login = () => {
       localStorage.setItem('token', token);
 
       // update the user in context
-      setUser({ ...user, loggedIn: true });
+      setUser({ username: user.username, loggedIn: true });
       history.push('/');
     } catch (err) {
       setError(err.message);

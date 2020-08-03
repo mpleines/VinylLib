@@ -25,7 +25,6 @@ function App() {
     {},
     {
       username: '',
-      password: '',
       loggedIn: false,
     },
   );
