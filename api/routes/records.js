@@ -20,6 +20,42 @@ router.post('/all', verifyToken, async (req, res) => {
   });
 });
 
+// get count of all records
+router.post('/all/count', verifyToken, async (req, res) => {
+  jwt.verify(req.token, 'secretkey', async (err, authData) => {
+    if (err) {
+      res.json(403);
+    } else {
+      try {
+        const count = await Record.countDocuments({
+          username: req.body.username,
+        });
+        res.json(count);
+      } catch (err) {
+        res.json({ message: err });
+      }
+    }
+  });
+});
+
+// get back the last added record
+router.post('/last-added', verifyToken, async (req, res) => {
+  jwt.verify(req.token, 'secretkey', async (err, authData) => {
+    if (err) {
+      res.json(403);
+    } else {
+      try {
+        const lastAdded = await Record.find({ username: req.body.username })
+          .sort({ created: -1 })
+          .limit(1);
+        res.json(lastAdded);
+      } catch (err) {
+        res.json({ message: err });
+      }
+    }
+  });
+});
+
 // get back filtered records
 router.post('/filtered', verifyToken, async (req, res) => {
   jwt.verify(req.token, 'secretkey', async (err, authData) => {
