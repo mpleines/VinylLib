@@ -7,6 +7,13 @@ export const Link = styled(RouterLink)`
   text-decoration: none;
   font-size: ${typeScale.paragraph};
   color: ${colors.text.inverted};
+
+  > * {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &:visited {
     color: ${colors.text.inverted};
   }

@@ -6,15 +6,12 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import Margin from '../components/Margin';
 import { ReactComponent as WomanListening } from '../icons/woman-listening.svg';
 import { Page } from '../components/Page';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import {
-  getRecordCount,
-  emptyResponseHandler,
-  getLastAddedRecord,
-} from '../ApiService/ApiService';
+import { getRecordCount, getLastAddedRecord } from '../ApiService/ApiService';
 import Square from '../components/Square';
 import Row from '../components/Row';
+import { Link } from '../components/Link';
 
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
