@@ -10,6 +10,7 @@ const Square = styled.div`
   text-align: center;
   border-radius: 5px;
   padding: 1.5em;
+  word-break: break-all;
 `;
 
 export default Square;
