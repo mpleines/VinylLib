@@ -6,7 +6,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import Margin from '../components/Margin';
 import { ReactComponent as WomanListening } from '../icons/woman-listening.svg';
 import { Page } from '../components/Page';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import {
   getRecordCount,
@@ -81,9 +81,13 @@ export const Dashboard = () => {
             </Paragraph>
           </Square>
           <Square>
-            <Title black noMargin style={{ width: '100%' }}>
-              {lastAdded.album}
-            </Title>
+            <Link
+              to={{ pathname: '/record-details', state: { record: lastAdded } }}
+            >
+              <Title black noMargin style={{ width: '100%' }}>
+                {lastAdded.album}
+              </Title>
+            </Link>
             <Helper black>{lastAdded.artist}</Helper>
             <Paragraph black>Last added</Paragraph>
           </Square>
