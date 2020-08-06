@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const Square = styled.div`
   flex: 1 0 250px;
   max-width: 250px;
+  min-height: 150px;
   background: white;
   display: grid;
   place-items: center;

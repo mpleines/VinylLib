@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Title, Paragraph, Helper } from '../components/Fonts';
+import { Title, Paragraph, Helper, Heading } from '../components/Fonts';
 import { Divider } from '../components/Divider';
 import { PrimaryButton } from '../components/Buttons';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -69,25 +69,30 @@ export const Dashboard = () => {
       <Margin margin={'3em'} />
       {!loading && recordCount >= 1 && (
         <Row>
-          <Square>
-            <Title black noMargin style={{ width: '100%' }}>
-              {recordCount}
-            </Title>
-            <Paragraph black>
-              {recordCount > 1 ? 'Records' : 'Record'} stored
-            </Paragraph>
-          </Square>
-          <Square>
-            <Link
-              to={{ pathname: '/record-details', state: { record: lastAdded } }}
-            >
+          <div>
+            <Heading>Records stored</Heading>
+            <Square>
               <Title black noMargin style={{ width: '100%' }}>
-                {lastAdded.album}
+                {recordCount}
               </Title>
-            </Link>
-            <Helper black>{lastAdded.artist}</Helper>
-            <Paragraph black>Last added</Paragraph>
-          </Square>
+            </Square>
+          </div>
+          <div>
+            <Heading>Last Added</Heading>
+            <Square>
+              <Link
+                to={{
+                  pathname: '/record-details',
+                  state: { record: lastAdded },
+                }}
+              >
+                <Title black noMargin style={{ width: '100%' }}>
+                  {lastAdded.album}
+                </Title>
+              </Link>
+              <Helper black>{lastAdded.artist}</Helper>
+            </Square>
+          </div>
         </Row>
       )}
     </Page>
