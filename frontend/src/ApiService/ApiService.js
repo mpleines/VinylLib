@@ -1,133 +1,80 @@
+import axios from 'axios';
+
+const DEFAULT_HEADERS = {
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+};
+
+export const request = async (endpoint, payload, method = 'POST') => {
+  const token = localStorage.getItem('token');
+  const auth = { Authorization: `Bearer ${token}` };
+
+  try {
+    const response = await axios({
+      method: method,
+      url: `${process.env.REACT_APP_API_URL}${endpoint}`,
+      data: payload,
+      headers: {
+        ...DEFAULT_HEADERS,
+        ...auth,
+      },
+    });
+
+    return response;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(error.response.data.message);
+    }
+  }
+};
+
 // login the user
 export const login = async (user) => {
-  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/login'}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(user),
-  });
-
-  if (response.status !== 200) {
-    const res = await response.json();
-    const errorMessage = res.message;
-    throw new Error(errorMessage);
-  }
-
-  const { token } = await response.json();
+  const response = await request('/login', user);
+  const { token } = response.data;
   return token;
 };
 
 // register new User
 export const register = async (newUser) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_API_URL}${'/register'}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(newUser),
-    },
-  );
-
-  if (response.status !== 200) {
-    const res = await response.json();
-    const errorMessage = res.message;
-    throw new Error(errorMessage);
-  }
+  const response = await request('/register', newUser);
+  return response;
 };
 
 // common API requests go here
 export const getRecords = async (user) => {
-  const token = localStorage.getItem('token');
+  const response = await request('/records/all', user);
+  return response.data;
+};
 
-  const response = await fetch(
-    `${process.env.REACT_APP_API_URL}${'/records/all'}`,
-    {
-      method: 'POST',
-      body: user,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
-  const data = await response.json();
-  return data;
+export const getRecordCount = async (body) => {
+  const response = await request('/records/all/count', body);
+  return response.data;
+};
+
+export const getLastAddedRecord = async (body) => {
+  const response = await request('/records/last-added', body);
+  return response.data;
 };
 
 export const getFilteredRecords = async (body) => {
-  const token = localStorage.getItem('token');
-
-  const response = await fetch(
-    `${process.env.REACT_APP_API_URL}${'/records/filtered'}`,
-    {
-      method: 'POST',
-      body,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
-  const data = await response.json();
-  return data;
+  const response = request('/records/filtered', body);
+  return response.data;
 };
 
 export const postRecord = async (record) => {
-  const token = localStorage.getItem('token');
-
-  const response = await fetch(
-    `${process.env.REACT_APP_API_URL}${'/records'}`,
-    {
-      method: 'POST',
-      body: JSON.stringify(record),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
+  const response = await request('/records', record);
   return response;
 };
 
 export const deleteRecord = async (recordId) => {
-  const token = localStorage.getItem('token');
-
-  const response = await fetch(
-    `${process.env.REACT_APP_API_URL}${'/records'}/${recordId}`,
-    {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
+  const response = await request(`/records'/${recordId}`, recordId);
   return response;
 };
 
 export const getGenres = async () => {
-  const token = localStorage.getItem('token');
-
-  const response = await fetch(`${process.env.REACT_APP_API_URL}${'/genres'}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const data = await response.json();
-  return data;
+  const response = await request('/genres');
+  return response.data;
 };
 
 export const emptyResponseHandler = async (request, body) => {
