@@ -68,7 +68,7 @@ export const postRecord = async (record) => {
 };
 
 export const deleteRecord = async (recordId) => {
-  const response = await request(`/records'/${recordId}`, recordId);
+  const response = await request(`/records/${recordId}`, undefined, 'DELETE');
   return response;
 };
 
