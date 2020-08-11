@@ -12,7 +12,9 @@ export const Navigation = () => {
   const history = useHistory();
   const styles = {
     navigation: {
-      padding: '0.2em 1.3em',
+      position: 'fixed',
+      width: '100%',
+      top: '0',
       background: colors.text.normal,
     },
   };
