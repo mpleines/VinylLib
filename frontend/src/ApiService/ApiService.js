@@ -58,7 +58,8 @@ export const getLastAddedRecord = async (body) => {
 };
 
 export const getFilteredRecords = async (body) => {
-  const response = request('/records/filtered', body);
+  const response = await request('/records/filtered', body);
+  console.log(response);
   return response.data;
 };
 
