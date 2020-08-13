@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Title, Paragraph, Helper, Heading } from '../components/Fonts';
+import { Title, Paragraph } from '../components/Fonts';
 import { Divider } from '../components/Divider';
 import { PrimaryButton } from '../components/Buttons';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -9,9 +9,8 @@ import { Page } from '../components/Page';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import { getRecordCount, getLastAddedRecord } from '../ApiService/ApiService';
-import Square from '../components/Square';
 import Row from '../components/Row';
-import { Link } from '../components/Link';
+import { DashboardItem } from '../components/DashboardItem';
 
 export const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -69,30 +68,19 @@ export const Dashboard = () => {
       <Margin margin={'3em'} />
       {!loading && recordCount >= 1 && (
         <Row>
-          <div>
-            <Heading>Records stored</Heading>
-            <Square>
-              <Title black noMargin style={{ width: '100%' }}>
-                {recordCount}
-              </Title>
-            </Square>
-          </div>
-          <div>
-            <Heading>Last Added</Heading>
-            <Square>
-              <Link
-                to={{
-                  pathname: '/record-details',
-                  state: { record: lastAdded },
-                }}
-              >
-                <Title black noMargin style={{ width: '100%' }}>
-                  {lastAdded.album}
-                </Title>
-              </Link>
-              <Helper black>{lastAdded.artist}</Helper>
-            </Square>
-          </div>
+          <DashboardItem title="Records stored" linkTo="/all-records">
+            <span>{recordCount}</span>
+          </DashboardItem>
+          <DashboardItem
+            title="Last added"
+            subTitle={lastAdded.artist}
+            linkTo={{
+              pathname: '/record-details',
+              state: { record: lastAdded },
+            }}
+          >
+            {lastAdded.album}
+          </DashboardItem>
         </Row>
       )}
     </Page>
