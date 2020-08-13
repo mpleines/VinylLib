@@ -32,7 +32,7 @@ export const Dashboard = () => {
       }
     }
     countRecords();
-  }, [setRecordCount]);
+  }, [setRecordCount, user]);
 
   useEffect(() => {
     async function getLastAdded() {
@@ -46,7 +46,7 @@ export const Dashboard = () => {
       }
     }
     getLastAdded();
-  }, []);
+  }, [user]);
 
   return (
     <Page>
