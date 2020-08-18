@@ -49,7 +49,9 @@ export const Dashboard = () => {
 
   return (
     <Page>
-      <Title noMargin>Welcome back, {user.username}!</Title>
+      <Title color="white" noMargin>
+        Welcome back, {user.username}!
+      </Title>
       {loading && <LoadingSpinner />}
       {!loading && recordCount < 1 && (
         <>
