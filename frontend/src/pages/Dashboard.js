@@ -83,6 +83,7 @@ export const Dashboard = () => {
           >
             {lastAdded.album}
           </DashboardItem>
+          <DashboardItem title="Favourite Genre">Jazz</DashboardItem>
         </Row>
       )}
     </Page>
