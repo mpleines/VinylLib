@@ -25,7 +25,9 @@ const Landing = () => {
       </Banner>
       <Center>
         <Margin margin={'10em'} />
-        <Title noMargin>Your records, ordered.</Title>
+        <Title color={colors.text.inverted} noMargin>
+          Your records, ordered.
+        </Title>
         <Paragraph>
           Organize, categorize & store all of your records. Lifetime free.
         </Paragraph>
