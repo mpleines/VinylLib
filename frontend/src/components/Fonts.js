@@ -3,8 +3,7 @@ import { typeScale } from '../utils/typography';
 import { colors } from '../utils/colors';
 
 export const Title = styled.h1`
-  color: ${(props) =>
-    props.black ? colors.text.normal : colors.text.inverted};
+  color: ${(props) => (props.color ? props.color : colors.text.normal)};
   font-size: ${typeScale.header1};
   margin: ${(props) => (props.noMargin ? 0 : null)};
 `;
