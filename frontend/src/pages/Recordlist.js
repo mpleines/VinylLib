@@ -32,7 +32,7 @@ const RecordList = () => {
       }
     }
     fetchRecords();
-  }, [setRecords]);
+  }, [setRecords, user]);
 
   const handleFilter = async (e) => {
     if (e.key !== 'Enter') {
