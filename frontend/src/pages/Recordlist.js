@@ -69,7 +69,14 @@ const RecordList = () => {
         <div style={{ flex: '0 0 150px' }}>
           <Label>Order By</Label>
           <Select
-            options={['created', 'artist']}
+            options={[
+              'created',
+              'artist',
+              'album',
+              'yearOfRelease',
+              'genre',
+              'storageLocation',
+            ]}
             onChange={(e) => setOrderOption(e.target.value)}
           />
         </div>
