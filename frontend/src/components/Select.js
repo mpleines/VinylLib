@@ -24,12 +24,20 @@ const StyledOption = styled.option`
   border: 2px solid ${colors.text.normal};
 `;
 
-export const Select = ({ name, options, value, onChange }) => {
+export const Select = ({
+  name,
+  options,
+  placeholderOption,
+  value,
+  onChange,
+}) => {
   return (
     <StyledSelect name={name} value={value} onChange={onChange}>
-      <StyledOption value={''} disabled selected>
-        Select one
-      </StyledOption>
+      {placeholderOption && (
+        <StyledOption value={''} disabled selected>
+          Select one
+        </StyledOption>
+      )}
       {options &&
         options.map((option) => (
           <StyledOption value={option}>{option}</StyledOption>

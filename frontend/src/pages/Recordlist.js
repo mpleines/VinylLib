@@ -14,6 +14,7 @@ import Margin from '../components/Margin';
 import Searchbar from '../components/Searchbar';
 import { Select } from '../components/Select';
 import { orderBy } from '../utils/helpers';
+import { Label } from '../components/InputFields';
 
 const INITIAL_SORT_OPTION = 'created';
 
@@ -66,6 +67,7 @@ const RecordList = () => {
         }}
       >
         <div style={{ flex: '0 0 150px' }}>
+          <Label>Order By</Label>
           <Select
             options={['created', 'artist']}
             onChange={(e) => setOrderOption(e.target.value)}
@@ -73,6 +75,7 @@ const RecordList = () => {
         </div>
         <div style={{ marginRight: '.5em' }} />
         <div style={{ flex: '0 0 250px' }}>
+          <Label>Search Album</Label>
           <Searchbar
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}

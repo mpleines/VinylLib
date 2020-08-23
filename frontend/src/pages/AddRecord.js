@@ -111,13 +111,16 @@ export const AddRecord = () => {
               options={years}
               value={record.yearOfRelease}
               onChange={handleInputChange}
+              placeholderOption={'Select One'}
             />
           </FormGroup>
           <FormGroup label="Genre">
             <Select
               name="genre"
               options={genres.map((genre) => genre.name)}
+              value={record.genre}
               onChange={handleInputChange}
+              placeholderOption={'Select One'}
             />
           </FormGroup>
           <FormGroup label="Storage Location">
