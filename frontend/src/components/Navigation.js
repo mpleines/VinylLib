@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Divider } from './Divider';
 import { PrimaryButton } from './Buttons';
@@ -9,6 +9,14 @@ import { useHistory } from 'react-router-dom';
 import { colors } from '../utils/colors';
 import Logo from '../components/Logo';
 import Margin from '../components/Margin';
+import { Dropdown, DropdownItem } from './Dropdown';
+import UserContext from '../contexts/UserContext';
+
+const NavigationItem = ({ children, onClick }) => (
+  <div role="button" onClick={onClick} style={{ cursor: 'pointer' }}>
+    {children}
+  </div>
+);
 
 const NavigationItemContainer = styled.div`
   padding: 0.2em 0.7em;
@@ -35,7 +43,9 @@ const StyledNavigation = styled.div`
 `;
 
 export const Navigation = () => {
+  const { user } = useContext(UserContext);
   const history = useHistory();
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   return (
     <StyledNavigation>
@@ -50,9 +60,18 @@ export const Navigation = () => {
         <PrimaryButton onClick={() => history.push('/add-record')}>
           Add Record
         </PrimaryButton>
-        <Link to="/settings">
+        <NavigationItem onClick={() => setUserDropdownOpen(!userDropdownOpen)}>
           <UserIcon />
-        </Link>
+          <Dropdown
+            isOpen={userDropdownOpen}
+            onClose={() => setUserDropdownOpen(false)}
+            title={user.username}
+          >
+            <DropdownItem onClick={() => history.push('/settings')}>
+              Settings
+            </DropdownItem>
+          </Dropdown>
+        </NavigationItem>
       </NavigationItemContainer>
     </StyledNavigation>
   );
