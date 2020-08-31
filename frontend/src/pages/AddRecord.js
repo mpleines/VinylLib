@@ -108,7 +108,9 @@ export const AddRecord = () => {
           <FormGroup label="Year of Release">
             <Select
               name="yearOfRelease"
-              options={years}
+              options={years.map((year) => {
+                return { label: year, value: year };
+              })}
               value={record.yearOfRelease}
               onChange={handleInputChange}
               placeholderOption={'Select One'}
@@ -117,7 +119,9 @@ export const AddRecord = () => {
           <FormGroup label="Genre">
             <Select
               name="genre"
-              options={genres.map((genre) => genre.name)}
+              options={genres.map((genre) => {
+                return { label: genre.name, value: genre.name };
+              })}
               value={record.genre}
               onChange={handleInputChange}
               placeholderOption={'Select One'}
