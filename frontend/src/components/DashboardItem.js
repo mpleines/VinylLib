@@ -15,7 +15,16 @@ export const DashboardItem = ({ title, subTitle, children, linkTo }) => (
       <H3 noMargin black>
         {title}
       </H3>
-      <Title color={colors.primary['500']} noMargin style={{ width: '100%' }}>
+      <Title
+        color={colors.primary['500']}
+        noMargin
+        style={{
+          width: '100%',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+        }}
+      >
         {children}
       </Title>
       <Helper black>{subTitle}</Helper>
