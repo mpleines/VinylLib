@@ -18,6 +18,15 @@ import { Label } from '../components/InputFields';
 
 const INITIAL_SORT_OPTION = 'created';
 
+const sortOptions = [
+  { value: 'created', label: 'Created' },
+  { value: 'artist', label: 'Artist' },
+  { value: 'album', label: 'Album' },
+  { value: 'yearOfRelease', label: 'Year of Release' },
+  { value: 'genre', label: 'Genre' },
+  { value: 'storageLocation', label: 'Storage Location' },
+];
+
 const RecordList = () => {
   const [showLoading, setShowLoading] = useState(true);
   const [records, setRecords] = useState([]);
@@ -69,14 +78,7 @@ const RecordList = () => {
         <div style={{ flex: '0 0 150px' }}>
           <Label>Order By</Label>
           <Select
-            options={[
-              'created',
-              'artist',
-              'album',
-              'yearOfRelease',
-              'genre',
-              'storageLocation',
-            ]}
+            options={sortOptions}
             onChange={(e) => setOrderOption(e.target.value)}
           />
         </div>

@@ -40,7 +40,7 @@ export const Select = ({
       )}
       {options &&
         options.map((option) => (
-          <StyledOption value={option}>{option}</StyledOption>
+          <StyledOption value={option.value}>{option.label}</StyledOption>
         ))}
     </StyledSelect>
   );
