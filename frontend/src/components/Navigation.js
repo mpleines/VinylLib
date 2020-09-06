@@ -33,11 +33,16 @@ const NavigationItemContainer = styled.div`
   }
 `;
 
-const StyledNavigation = styled.div`
+const NavigationWrapper = styled.div`
   top: 0;
   width: 100%;
   position: fixed;
   background: ${colors.text.normal};
+`;
+
+const StyledNavigation = styled.div`
+  margin: 0 auto;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
 `;
@@ -52,37 +57,41 @@ export const Navigation = () => {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   return (
-    <StyledNavigation>
-      <NavigationItemContainer>
-        <Link to="/dashboard">
-          <Logo />
-        </Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/all-records">All Records</Link>
-      </NavigationItemContainer>
-      <NavigationItemContainer>
-        <ButtonWithIcon
-          icon={<PlusIcon />}
-          buttonText={'ADD'}
-          onClick={() => history.push('/add-record')}
-        />
-        <NavigationItem onClick={() => setUserDropdownOpen(!userDropdownOpen)}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <UserIcon />
-            <Helper>{user.username}</Helper>
-            <ResponsiveArrow inverted={userDropdownOpen} />
-          </div>
-          <Dropdown
-            isOpen={userDropdownOpen}
-            onClose={() => setUserDropdownOpen(false)}
-            title={user.username}
+    <NavigationWrapper>
+      <StyledNavigation>
+        <NavigationItemContainer>
+          <Link to="/dashboard">
+            <Logo />
+          </Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/all-records">All Records</Link>
+        </NavigationItemContainer>
+        <NavigationItemContainer>
+          <ButtonWithIcon
+            icon={<PlusIcon />}
+            buttonText={'ADD'}
+            onClick={() => history.push('/add-record')}
+          />
+          <NavigationItem
+            onClick={() => setUserDropdownOpen(!userDropdownOpen)}
           >
-            <DropdownItem onClick={() => history.push('/settings')}>
-              Settings
-            </DropdownItem>
-          </Dropdown>
-        </NavigationItem>
-      </NavigationItemContainer>
-    </StyledNavigation>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <UserIcon />
+              <Helper>{user.username}</Helper>
+              <ResponsiveArrow inverted={userDropdownOpen} />
+            </div>
+            <Dropdown
+              isOpen={userDropdownOpen}
+              onClose={() => setUserDropdownOpen(false)}
+              title={user.username}
+            >
+              <DropdownItem onClick={() => history.push('/settings')}>
+                Settings
+              </DropdownItem>
+            </Dropdown>
+          </NavigationItem>
+        </NavigationItemContainer>
+      </StyledNavigation>
+    </NavigationWrapper>
   );
 };
