@@ -15,6 +15,8 @@ import Searchbar from '../components/Searchbar';
 import { Select } from '../components/Select';
 import { orderBy } from '../utils/helpers';
 import { Label } from '../components/InputFields';
+import styled from 'styled-components';
+import { FormGroup } from '../components/FormGroup';
 
 const INITIAL_SORT_OPTION = 'created';
 
@@ -26,6 +28,14 @@ const sortOptions = [
   { value: 'genre', label: 'Genre' },
   { value: 'storageLocation', label: 'Storage Location' },
 ];
+
+const ControlWrapper = styled.div`
+  @media (min-width: 650px) {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+`;
 
 const RecordList = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -39,7 +49,6 @@ const RecordList = () => {
 
   useEffect(() => {
     async function fetchRecords() {
-      console.log('called');
       try {
         const records = await emptyResponseHandler(getFilteredRecords, {
           user: user,
@@ -68,31 +77,23 @@ const RecordList = () => {
       <Heading noMargin alignItems="center">
         All Records
       </Heading>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          flexWrap: 'wrap',
-        }}
-      >
-        <div style={{ flex: '0 0 150px' }}>
-          <Label>Order By</Label>
+      <ControlWrapper>
+        <FormGroup label="Order By" width={'150px'}>
           <Select
             options={sortOptions}
             onChange={(e) => setOrderOption(e.target.value)}
           />
-        </div>
+        </FormGroup>
         <div style={{ marginRight: '.5em' }} />
-        <div style={{ flex: '0 0 250px' }}>
-          <Label>Search Album</Label>
+        <FormGroup label="Search Album" width={'250px'}>
           <Searchbar
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
             onKeyDown={(e) => handleFilter(e)}
             placeholder="Search album..."
           />
-        </div>
-      </div>
+        </FormGroup>
+      </ControlWrapper>
       <Margin />
       {showLoading && <LoadingSpinner />}
       {!showLoading && records.length === 0 && (
