@@ -12,11 +12,14 @@ import { ReactComponent as PlusIcon } from '../icons/plus.svg';
 import { Helper } from './Fonts';
 import { ReactComponent as Arrow } from '../icons/arrow.svg';
 import { ReactComponent as Menu } from '../icons/menu.svg';
+import OutsideClickHandler from 'react-outside-click-handler';
 
-const NavigationItem = ({ children, onClick }) => (
-  <div role="button" onClick={onClick} style={{ cursor: 'pointer' }}>
-    {children}
-  </div>
+const NavigationItem = ({ children, onClick, onOutsideClick }) => (
+  <OutsideClickHandler onOutsideClick={onOutsideClick}>
+    <div role="button" onClick={onClick} style={{ cursor: 'pointer' }}>
+      {children}
+    </div>
+  </OutsideClickHandler>
 );
 
 const NavigationItemContainer = styled.div`
@@ -73,6 +76,7 @@ const CollapsedNavigation = () => {
 export const Navigation = () => {
   const { user } = useContext(UserContext);
   const history = useHistory();
+  const [addMenuOpen, setAddMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [isSmallDevice, setIsSmallDevice] = useState(false);
 
@@ -98,24 +102,35 @@ export const Navigation = () => {
           <Link to="/all-records">All Records</Link>
         </NavigationItemContainer>
         <NavigationItemContainer>
-          <ButtonWithIcon
-            icon={<PlusIcon />}
-            buttonText={'ADD'}
-            onClick={() => history.push('/add-record')}
-          />
+          <NavigationItem
+            onClick={() => setAddMenuOpen(!addMenuOpen)}
+            onOutsideClick={() => setAddMenuOpen(false)}
+          >
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <PlusIcon />
+              <Helper>Add</Helper>
+              <ResponsiveArrow inverted={addMenuOpen} />
+            </div>
+            <Dropdown
+              isOpen={addMenuOpen}
+              onOutsideClick={() => setAddMenuOpen(false)}
+              title={'Menu'}
+            >
+              <DropdownItem onClick={() => history.push('/add-record')}>
+                Add Record
+              </DropdownItem>
+            </Dropdown>
+          </NavigationItem>
           <NavigationItem
             onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+            onOutsideClick={() => setUserDropdownOpen(false)}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <UserIcon />
               <Helper>{user.username}</Helper>
               <ResponsiveArrow inverted={userDropdownOpen} />
             </div>
-            <Dropdown
-              isOpen={userDropdownOpen}
-              onClose={() => setUserDropdownOpen(false)}
-              title={user.username}
-            >
+            <Dropdown isOpen={userDropdownOpen} title={user.username}>
               <DropdownItem onClick={() => history.push('/settings')}>
                 Settings
               </DropdownItem>
