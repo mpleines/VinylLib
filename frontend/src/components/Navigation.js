@@ -9,6 +9,8 @@ import Logo from '../components/Logo';
 import { Dropdown, DropdownItem } from './Dropdown';
 import UserContext from '../contexts/UserContext';
 import { ReactComponent as PlusIcon } from '../icons/plus.svg';
+import { Helper } from './Fonts';
+import { ReactComponent as Arrow } from '../icons/arrow.svg';
 
 const NavigationItem = ({ children, onClick }) => (
   <div role="button" onClick={onClick} style={{ cursor: 'pointer' }}>
@@ -40,6 +42,10 @@ const StyledNavigation = styled.div`
   justify-content: space-between;
 `;
 
+const ResponsiveArrow = styled(Arrow)`
+  transform: ${(props) => (props.inverted ? 'rotate(180deg)' : 'rotate(0deg)')};
+`;
+
 export const Navigation = () => {
   const { user } = useContext(UserContext);
   const history = useHistory();
@@ -61,7 +67,11 @@ export const Navigation = () => {
           onClick={() => history.push('/add-record')}
         />
         <NavigationItem onClick={() => setUserDropdownOpen(!userDropdownOpen)}>
-          <UserIcon />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <UserIcon />
+            <Helper>{user.username}</Helper>
+            <ResponsiveArrow inverted={userDropdownOpen} />
+          </div>
           <Dropdown
             isOpen={userDropdownOpen}
             onClose={() => setUserDropdownOpen(false)}

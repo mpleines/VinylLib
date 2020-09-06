@@ -12,7 +12,7 @@ const StyledDropdown = styled.ul`
   min-width: 250px;
   position: absolute;
   top: 4em;
-  transform: translateX(-80%);
+  transform: translateX(-50%);
 `;
 
 const StyledDropdownItem = styled.div`
