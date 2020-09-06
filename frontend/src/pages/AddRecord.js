@@ -3,7 +3,7 @@ import { Page } from '../components/Page';
 import { Heading, Paragraph } from '../components/Fonts';
 import { TextInput } from '../components/InputFields';
 import { FormGroup } from '../components/FormGroup';
-import { PrimaryButton } from '../components/Buttons';
+import { PrimaryButton, ButtonWithIcon } from '../components/Buttons';
 import { Form } from '../components/Form';
 import { Select } from '../components/Select';
 import { getYears } from '../utils/helpers';
@@ -12,6 +12,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { toasty } from '../components/Toast';
 import { required } from '../utils/validators';
 import UserContext from '../contexts/UserContext';
+import Record from '../components/Record';
+import { ReactComponent as PlusIcon } from '../icons/plus.svg';
 
 const initialErrors = { artistError: '', albumError: '' };
 
@@ -85,14 +87,11 @@ export const AddRecord = () => {
       ) : (
         <Form
           actions={[
-            <PrimaryButton
-              type="button"
-              margin="5rem 0 1rem 0"
-              justifyContent="flex-end"
+            <ButtonWithIcon
+              icon={<PlusIcon />}
+              buttonText={'Add Record'}
               onClick={addRecord}
-            >
-              Add Record
-            </PrimaryButton>,
+            />,
           ]}
         >
           <Paragraph>
