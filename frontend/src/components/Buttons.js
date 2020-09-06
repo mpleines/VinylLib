@@ -1,6 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../utils/colors';
 import { typeScale } from '../utils/typography';
+import { useHistory } from 'react-router-dom';
 
 const Button = styled.button`
   border: none;
@@ -90,3 +92,27 @@ export const BigPrimaryButton = styled(BigButton)`
     color: ${colors.text.normal};
   }
 `;
+
+export const SmallPrimaryButton = styled(PrimaryButton)`
+  padding: 6px 12px;
+`;
+
+const WithIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const WithIconText = styled.span`
+  margin-left: 0.3em;
+`;
+
+export const ButtonWithIcon = ({ icon, buttonText, onClick }) => {
+  return (
+    <SmallPrimaryButton onClick={onClick}>
+      <WithIconWrapper>
+        {icon}
+        <WithIconText>{buttonText}</WithIconText>
+      </WithIconWrapper>
+    </SmallPrimaryButton>
+  );
+};
