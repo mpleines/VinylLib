@@ -37,7 +37,7 @@ const NavigationItemContainer = styled.div`
   }
 `;
 
-const NavigationWrapper = styled.div`
+export const NavigationWrapper = styled.div`
   top: 0;
   width: 100%;
   position: fixed;
