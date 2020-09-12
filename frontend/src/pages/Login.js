@@ -40,7 +40,7 @@ const Login = () => {
         </SecondaryButton>
       </Banner>
       <Center>
-        <Margin margin={'3em'} />
+        <Margin margin={'7em'} />
         <Heading>Login</Heading>
         <Form
           actions={[<PrimaryButton onClick={handleLogin}>Login</PrimaryButton>]}
