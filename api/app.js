@@ -49,6 +49,17 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
+  console.log(req.body);
+  if (!req.body.username) {
+    return res.status(500).send({ message: 'Username required' });
+  }
+  if (!req.body.password) {
+    return res.status(500).send({ message: 'Password required' });
+  }
+  if (!req.body.email) {
+    return res.status(500).send({ message: 'Email required' });
+  }
+
   try {
     // hash the password
     req.body.password = bcrypt.hashSync(req.body.password, 10);

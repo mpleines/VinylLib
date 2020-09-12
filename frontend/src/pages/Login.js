@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Heading, H3 } from '../components/Fonts';
+import { Heading } from '../components/Fonts';
 import { Form } from '../components/Form';
 import { FormGroup } from '../components/FormGroup';
 import { TextInput } from '../components/InputFields';
