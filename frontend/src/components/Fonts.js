@@ -40,6 +40,7 @@ export const Paragraph = styled.p`
   color: ${(props) =>
     props.black ? colors.text.normal : colors.text.inverted};
   font-size: ${typeScale.paragraph};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : 'normal')};
 `;
 
 export const Helper = styled.p`

@@ -48,7 +48,6 @@ export const SecondaryButton = styled(Button)`
   color: ${colors.text.normal};
   background-color: ${colors.text.inverted};
   padding: 10px 22px;
-  border: 2px solid ${colors.text.normal};
 
   &:hover {
     color: ${colors.text.inverted};

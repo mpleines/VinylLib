@@ -40,7 +40,7 @@ const Register = () => {
         </SecondaryButton>
       </Banner>
       <Center>
-        <Margin margin={'3em'} />
+        <Margin margin={'7em'} />
         <Heading>Create an Account</Heading>
         <Form
           actions={[
