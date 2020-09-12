@@ -28,7 +28,6 @@ const RecordWrapper = styled(Link)`
 
 const RecordImageWrapper = styled.div`
   display: inline-block;
-  position: relative;
   width: 64px;
   height: 64px;
   overflow: hidden;
