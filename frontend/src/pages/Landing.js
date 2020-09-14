@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Paragraph } from '../components/Fonts';
 import { BigPrimaryButton, SecondaryButton } from '../components/Buttons';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Margin from '../components/Margin';
-import Banner from '../components/Banner';
+import Logo from '../components/Logo';
 
 const gradient = keyframes`
   0% {
@@ -34,27 +34,47 @@ const BigTitle = styled.h1`
   line-height: 0.9em;
 `;
 
+const LandingBanner = styled.div`
+  position: fixed;
+  top: 0;
+  margin: 0 auto;
+  width: 100vw;
+`;
+
+const LandingBannerContent = styled.div`
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2em 1.3em;
+`;
+
+const Center = styled.div`
+  margin: 0 auto;
+`;
+
+const MaxCenter = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+`;
+
 const Landing = () => {
   const history = useHistory();
   return (
     <LandingPage>
-      <Banner withLogo>
-        <SecondaryButton onClick={() => history.push('/login')}>
-          Login
-        </SecondaryButton>
-      </Banner>
-      <div
-        style={{
-          margin: '0 auto',
-        }}
-      >
-        <div
-          style={{
-            maxWidth: '1000px',
-            margin: '0 auto',
-            textAlign: 'center',
-          }}
-        >
+      <LandingBanner>
+        <LandingBannerContent>
+          <Link to="/landing">
+            <Logo />
+          </Link>
+          <SecondaryButton onClick={() => history.push('/login')}>
+            Login
+          </SecondaryButton>
+        </LandingBannerContent>
+      </LandingBanner>
+      <Center>
+        <MaxCenter>
           <BigTitle>Your records, ordered.</BigTitle>
           <div>
             <Margin margin={'4em'} />
@@ -66,8 +86,8 @@ const Landing = () => {
               Register now for free
             </BigPrimaryButton>
           </div>
-        </div>
-      </div>
+        </MaxCenter>
+      </Center>
     </LandingPage>
   );
 };
