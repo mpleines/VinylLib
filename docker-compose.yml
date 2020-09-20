@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./frontend
+    stdin_open: true
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - 5000:3000
+
+  api:
+    container_name: api
+    build: ./api
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - 5001:8081
+    external_links:
+      - mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'

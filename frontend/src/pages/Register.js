@@ -15,6 +15,7 @@ import { toasty } from '../components/Toast';
 
 const Register = () => {
   const history = useHistory();
+  const [error, setError] = useState('');
 
   const [newUser, setNewUser] = useState({
     username: '',
@@ -28,7 +29,7 @@ const Register = () => {
       toasty('Account registered successfully - You may now login', 5000);
       history.push('/login');
     } catch (err) {
-      console.log(err);
+      setError(err.message);
     }
   };
 
@@ -40,7 +41,7 @@ const Register = () => {
         </SecondaryButton>
       </Banner>
       <Center>
-        <Margin margin={'3em'} />
+        <Margin margin={'7em'} />
         <Heading>Create an Account</Heading>
         <Form
           actions={[
@@ -78,6 +79,9 @@ const Register = () => {
         </Form>
         <Margin />
         <Link to="/">Go back</Link>
+        {error && (
+          <div style={{ color: 'red', marginTop: '16px' }}>{error}</div>
+        )}
       </Center>
     </React.Fragment>
   );

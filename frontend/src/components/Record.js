@@ -1,11 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { H5, Paragraph, Helper } from './Fonts';
 import DefaultCover from '../assets/default-cover.png';
-import { Link } from '../components/Link';
 import { colors } from '../utils/colors';
+import { Link } from 'react-router-dom';
 
-const RecordWrapper = styled.div`
+const RecordTitle = styled(H5)``;
+
+const RecordWrapper = styled(Link)`
+  text-decoration: none;
   margin-bottom: 1em;
   background: ${colors.text.inverted};
   padding: 0.5rem;
@@ -15,13 +18,16 @@ const RecordWrapper = styled.div`
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  &:hover ${RecordTitle} {
+    color: ${colors.primary['500']};
   }
 `;
 
 const RecordImageWrapper = styled.div`
   display: inline-block;
-  position: relative;
   width: 64px;
   height: 64px;
   overflow: hidden;
@@ -56,12 +62,6 @@ const RecordBadge = styled.div`
   border-radius: 9px;
 `;
 
-const RecordTitle = styled(H5)`
-  &:hover {
-    color: ${colors.primary['500']};
-  }
-`;
-
 const Record = ({ record }) => {
   const {
     album,
@@ -72,12 +72,12 @@ const Record = ({ record }) => {
     yearOfRelease,
   } = record;
   return (
-    <RecordWrapper>
+    <RecordWrapper to={{ pathname: '/record-details', state: { record } }}>
       <RecordArt image={image ? image : DefaultCover} />
       <RecordInfo>
-        <Link to={{ pathname: '/record-details', state: { record } }}>
-          <RecordTitle black>{album}</RecordTitle>
-        </Link>
+        <RecordTitle black className="nested">
+          {album}
+        </RecordTitle>
         <RecordInfoText black>
           {artist} {yearOfRelease && `(${yearOfRelease})`}
         </RecordInfoText>

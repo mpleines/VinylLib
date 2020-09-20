@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../utils/colors';
 
 const Square = styled.div`
   flex: 1 0 250px;
@@ -7,7 +6,10 @@ const Square = styled.div`
   min-height: 150px;
   background: white;
   display: grid;
-  place-items: center;
+  grid-row: span 3;
+  grid-template-rows: 1fr auto 0.5fr;
+  grid-template-rows: subgrid;
+  grid-row-gap: 0;
   text-align: center;
   border-radius: 5px;
   padding: 1.5em;

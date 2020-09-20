@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Heading, H3 } from '../components/Fonts';
+import { Heading } from '../components/Fonts';
 import { Form } from '../components/Form';
 import { FormGroup } from '../components/FormGroup';
 import { TextInput } from '../components/InputFields';
@@ -40,7 +40,7 @@ const Login = () => {
         </SecondaryButton>
       </Banner>
       <Center>
-        <Margin margin={'3em'} />
+        <Margin margin={'7em'} />
         <Heading>Login</Heading>
         <Form
           actions={[<PrimaryButton onClick={handleLogin}>Login</PrimaryButton>]}

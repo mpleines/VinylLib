@@ -1,6 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../utils/colors';
 import { typeScale } from '../utils/typography';
+import { useHistory } from 'react-router-dom';
 
 const Button = styled.button`
   border: none;
@@ -46,7 +48,6 @@ export const SecondaryButton = styled(Button)`
   color: ${colors.text.normal};
   background-color: ${colors.text.inverted};
   padding: 10px 22px;
-  border: 2px solid ${colors.text.normal};
 
   &:hover {
     color: ${colors.text.inverted};
@@ -90,3 +91,27 @@ export const BigPrimaryButton = styled(BigButton)`
     color: ${colors.text.normal};
   }
 `;
+
+export const SmallPrimaryButton = styled(PrimaryButton)`
+  padding: 6px 12px;
+`;
+
+const WithIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const WithIconText = styled.span`
+  margin-left: 0.3em;
+`;
+
+export const ButtonWithIcon = ({ icon, buttonText, onClick }) => {
+  return (
+    <SmallPrimaryButton onClick={onClick}>
+      <WithIconWrapper>
+        {icon}
+        <WithIconText>{buttonText}</WithIconText>
+      </WithIconWrapper>
+    </SmallPrimaryButton>
+  );
+};

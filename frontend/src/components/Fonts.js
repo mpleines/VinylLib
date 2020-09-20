@@ -18,6 +18,7 @@ export const Heading = styled.h2`
 export const H3 = styled.h3`
   color: ${(props) =>
     props.black ? colors.text.normal : colors.text.inverted};
+  margin: ${(props) => (props.noMargin ? 0 : '0 0 2rem 0')};
   font-size: ${typeScale.header3};
 `;
 
@@ -39,11 +40,12 @@ export const Paragraph = styled.p`
   color: ${(props) =>
     props.black ? colors.text.normal : colors.text.inverted};
   font-size: ${typeScale.paragraph};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : 'normal')};
 `;
 
 export const Helper = styled.p`
   color: ${(props) =>
     props.black ? colors.text.normal : colors.text.inverted};
-  margin: 0;
+  margin: 0.5em;
   font-size: ${typeScale.helper};
 `;
