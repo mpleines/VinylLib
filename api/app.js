@@ -72,7 +72,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-const connectionUrl = process.env.DB_CONNECTION || 'mongodb://localhost:27017/';
+const connectionUrl = process.env.DB_CONNECTION || 'mongodb://mongo:27017';
 
 mongoose
   .connect(connectionUrl, {
