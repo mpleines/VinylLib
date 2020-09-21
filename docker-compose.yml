@@ -8,6 +8,8 @@ services:
       - ./frontend:/usr/src/app
     ports:
       - 5000:3000
+    external_links:
+      - api
 
   api:
     container_name: api
