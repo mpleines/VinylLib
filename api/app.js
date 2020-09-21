@@ -72,8 +72,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-const connectionUrl =
-  process.env.DB_CONNECTION || 'mongodb://mongo:27017/vinyllib';
+const connectionUrl = process.env.DB_CONNECTION || 'mongodb://mongo:27017/';
 
 mongoose
   .connect(connectionUrl, {
