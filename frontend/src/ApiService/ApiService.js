@@ -8,7 +8,7 @@ const DEFAULT_HEADERS = {
 export const request = async (endpoint, payload, method = 'POST') => {
   const token = localStorage.getItem('token');
   const auth = { Authorization: `Bearer ${token}` };
-  const URI = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+  const URI = process.env.REACT_APP_API_URL || 'http://api:5001';
 
   try {
     const response = await axios({
