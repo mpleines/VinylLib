@@ -15,7 +15,7 @@ services:
     volumes:
       - ./api:/usr/src/app
     ports:
-      - 5001:8081
+      - 5001:8080
     external_links:
       - mongo
     depends_on:
