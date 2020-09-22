@@ -2,7 +2,6 @@ version: '3'
 
 services:
   frontend:
-    container_name: frontend
     build: ./frontend
     stdin_open: true
     volumes:
@@ -15,7 +14,6 @@ services:
       - app-network
 
   api:
-    container_name: vinyllib-api
     build: ./api
     volumes:
       - ./api:/usr/src/app
