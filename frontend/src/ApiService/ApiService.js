@@ -8,7 +8,7 @@ const DEFAULT_HEADERS = {
 export const request = async (endpoint, payload, method = 'POST') => {
   const token = localStorage.getItem('token');
   const auth = { Authorization: `Bearer ${token}` };
-  const URI = process.env.REACT_APP_API_URL || 'http://api:8080';
+  const URI = process.env.REACT_APP_API_URL || 'http://vinyllib-api:8080';
 
   try {
     const response = await axios({
