@@ -9,6 +9,8 @@ services:
       - ./frontend:/usr/src/app
     ports:
       - '5000:3000'
+    networks:
+      - default
 
   api:
     container_name: vinyllib-api
@@ -21,8 +23,13 @@ services:
       - mongo
     depends_on:
       - mongo
+    networks:
+      - default
 
   mongo:
     image: mongo
     ports:
       - '27017:27017'
+networks:
+  default:
+    driver: 'bridge'
