@@ -4,20 +4,18 @@ services:
   frontend:
     build: ./frontend
     stdin_open: true
-    networks:
-      - default
     volumes:
       - ./frontend:/usr/src/app
     ports:
       - 5000:3000
     external_links:
       - api
+    depends_on:
+      - api
 
   api:
     container_name: api
     build: ./api
-    networks:
-      - default
     volumes:
       - ./api:/usr/src/app
     ports:
@@ -32,6 +30,3 @@ services:
     image: mongo
     ports:
       - '27017:27017'
-
-networks:
-  default:
