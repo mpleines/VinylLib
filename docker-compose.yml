@@ -12,7 +12,7 @@ services:
     links:
       - api
     networks:
-      - default
+      - app-network
 
   api:
     container_name: vinyllib-api
@@ -26,12 +26,15 @@ services:
     depends_on:
       - mongo
     networks:
-      - default
+      - app-network
 
   mongo:
     image: mongo
     ports:
       - '27017:27017'
+    networks:
+      - app-network
+
 networks:
-  default:
+  app-network:
     driver: 'bridge'
