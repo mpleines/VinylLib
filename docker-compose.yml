@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   frontend:
@@ -7,26 +7,20 @@ services:
     volumes:
       - ./frontend:/usr/src/app
     ports:
-      - 5000:3000
-    networks:
-      - default
+      - '5000:3000'
 
   api:
     build: ./api
     volumes:
       - ./api:/usr/src/app
     ports:
-      - 5001:8080
+      - '5001:8080'
     external_links:
       - mongo
     depends_on:
       - mongo
-    networks:
-      - default
 
   mongo:
     image: mongo
     ports:
       - '27017:27017'
-networks:
-  default:
