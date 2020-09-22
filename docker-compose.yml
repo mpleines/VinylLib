@@ -12,7 +12,6 @@ services:
 
   api:
     container_name: vinyllib-api
-    container_name: my-web-container
     build: ./api
     volumes:
       - ./api:/usr/src/app
