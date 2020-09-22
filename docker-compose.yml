@@ -8,10 +8,6 @@ services:
       - ./frontend:/usr/src/app
     ports:
       - 5000:3000
-    external_links:
-      - api
-    depends_on:
-      - api
 
   api:
     build: ./api
