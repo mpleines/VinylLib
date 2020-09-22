@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3'
 
 services:
   frontend:
@@ -9,6 +9,8 @@ services:
       - ./frontend:/usr/src/app
     ports:
       - '5000:3000'
+    links:
+      - api
     networks:
       - default
 
