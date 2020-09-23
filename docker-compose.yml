@@ -2,37 +2,28 @@ version: '3'
 
 services:
   frontend:
+    container_name: frontend
     build: ./frontend
     stdin_open: true
     volumes:
       - ./frontend:/usr/src/app
     ports:
-      - '5000:3000'
-    links:
-      - api
-    networks:
-      - app-network
+      - '3000:3000'
 
   api:
+    container_name: api
     build: ./api
     volumes:
       - ./api:/usr/src/app
     ports:
-      - '5001:8080'
+      - '8080:8080'
     external_links:
       - mongo
     depends_on:
       - mongo
-    networks:
-      - app-network
 
   mongo:
+    container_name: mongo
     image: mongo
     ports:
       - '27017:27017'
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: 'bridge'
