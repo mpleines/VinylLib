@@ -11,7 +11,6 @@ services:
       - '3000:3000'
     depends_on:
       - api
-
   api:
     container_name: api
     build: ./api
@@ -23,7 +22,6 @@ services:
       - mongo
     depends_on:
       - mongo
-
   mongo:
     container_name: mongo
     image: mongo
