@@ -2,20 +2,25 @@ version: '3'
 
 services:
   frontend:
-    container_name: frontend
     build: ./frontend
     stdin_open: true
     volumes:
       - ./frontend:/usr/src/app
+      - /app/node_modules
     ports:
       - '3000:3000'
     depends_on:
       - api
+  nginx:
+    restart: always
+    build: ./controller
+    ports:
+      - '5000:80'
   api:
-    container_name: api
     build: ./api
     volumes:
       - ./api:/usr/src/app
+      - app/node_modules
     ports:
       - '8080:8080'
     external_links:
