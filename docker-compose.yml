@@ -1,29 +1,31 @@
 version: '3'
-
 services:
   frontend:
-    container_name: frontend
     build: ./frontend
     stdin_open: true
-    volumes:
-      - ./frontend:/usr/src/app
     ports:
       - '3000:3000'
-    depends_on:
-      - api
+    networks:
+      - mern-app
   api:
-    container_name: api
     build: ./api
-    volumes:
-      - ./api:/usr/src/app
     ports:
-      - '8080:8080'
-    external_links:
-      - mongo
+      - '5000:8080'
+    networks:
+      - mern-app
     depends_on:
       - mongo
   mongo:
-    container_name: mongo
     image: mongo
     ports:
       - '27017:27017'
+    networks:
+      - mern-app
+    volumes:
+      - mongo-data:/data/db
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
