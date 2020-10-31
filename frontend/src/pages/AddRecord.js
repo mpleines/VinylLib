@@ -12,7 +12,6 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { toasty } from '../components/Toast';
 import { required } from '../utils/validators';
 import UserContext from '../contexts/UserContext';
-import Record from '../components/Record';
 import { ReactComponent as PlusIcon } from '../icons/plus.svg';
 
 const initialErrors = { artistError: '', albumError: '' };
@@ -53,11 +52,7 @@ export const AddRecord = () => {
     const albumError = required(record.album);
     setErrors({ ...errors, artistError, albumError });
 
-    if (artistError || albumError) {
-      return false;
-    }
-
-    return true;
+    return !(artistError || albumError);
   };
 
   const addRecord = async () => {
@@ -107,9 +102,7 @@ export const AddRecord = () => {
           <FormGroup label="Year of Release">
             <Select
               name="yearOfRelease"
-              options={years.map((year) => {
-                return { label: year, value: year };
-              })}
+              options={years.map((year) => ({ label: year, value: year }))}
               value={record.yearOfRelease}
               onChange={handleInputChange}
               placeholderOption={'Select One'}
@@ -118,9 +111,7 @@ export const AddRecord = () => {
           <FormGroup label="Genre">
             <Select
               name="genre"
-              options={genres.map((genre) => {
-                return { label: genre.name, value: genre.name };
-              })}
+              options={genres.map((genre) => ({ label: genre.name, value: genre.name }))}
               value={record.genre}
               onChange={handleInputChange}
               placeholderOption={'Select One'}
