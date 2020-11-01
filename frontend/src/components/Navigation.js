@@ -1,6 +1,5 @@
-import React, { useState, useContext, useCallback, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { ButtonWithIcon } from './Buttons';
 import { ReactComponent as UserIcon } from '../icons/user.svg';
 import { Link } from './Link';
 import { useHistory } from 'react-router-dom';
@@ -114,7 +113,7 @@ export const Navigation = () => {
             <Dropdown
               isOpen={addMenuOpen}
               onOutsideClick={() => setAddMenuOpen(false)}
-              title={'Menu'}
+              title="Menu"
             >
               <DropdownItem onClick={() => history.push('/add-record')}>
                 Add Record
