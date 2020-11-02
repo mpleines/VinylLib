@@ -3,7 +3,6 @@ import { Page } from '../components/Page';
 import { Heading } from '../components/Fonts';
 import Record from '../components/Record';
 import {
-  getRecords,
   emptyResponseHandler,
   getFilteredRecords,
 } from '../ApiService/ApiService';
@@ -14,7 +13,6 @@ import Margin from '../components/Margin';
 import Searchbar from '../components/Searchbar';
 import { Select } from '../components/Select';
 import { orderBy } from '../utils/helpers';
-import { Label } from '../components/InputFields';
 import styled from 'styled-components';
 import { FormGroup } from '../components/FormGroup';
 
@@ -45,7 +43,7 @@ const RecordList = () => {
   const [filterValue, setFilterValue] = useState('');
 
   const [orderOption, setOrderOption] = useState(INITIAL_SORT_OPTION);
-  const [reverseOrder, setReverseOrder] = useState(true);
+  const [reverseOrder] = useState(true);
 
   useEffect(() => {
     async function fetchRecords() {
