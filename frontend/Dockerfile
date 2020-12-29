@@ -1,20 +1,32 @@
-# pull official base image
-FROM node:13.12.0-alpine
+# Build in this container
+FROM node:15.0.0-alpine as builder
 
-# set working directory
-WORKDIR /app
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json /usr/src/app/
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+# Set production flag so dev dependencies aren't installed
+RUN npm install
 
-# add app
-COPY . ./
+RUN npm install react-scripts -g
 
-# start app
-CMD ["npm", "start"]
+COPY ./ /usr/src/app/
+
+# Build the production build
+RUN npm run build
+
+# Start and nginx container
+FROM nginx
+
+# Set our custom nginx.conf in the container
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy the react build from the build container
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+
+# Set permissions so nginx can serve it
+RUN chown nginx.nginx /usr/share/nginx/html -R
+
+EXPOSE 80

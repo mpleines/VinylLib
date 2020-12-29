@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GlobalStyles from './globalStyles';
 import { Navigation } from './components/Navigation';
 import {
   BrowserRouter as Router,
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <UserContext.Provider value={userValue}>
+      <GlobalStyles />
       <div className="App">
         <Router>
           <Route
